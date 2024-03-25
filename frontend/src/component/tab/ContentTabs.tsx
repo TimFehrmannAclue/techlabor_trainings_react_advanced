@@ -54,7 +54,6 @@ export default function ContentTabs(props: IProps): ReactElement {
         <Tabs
           value={activeContentTabIndex}
           onChange={(e, newTabIndex) => (handleSetTabIndex(newTabIndex))}
-          aria-label="basic tabs example"
         >
           {contentTabs.map(({ headerText }) => (
             <StyledTab

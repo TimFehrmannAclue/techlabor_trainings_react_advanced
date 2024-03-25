@@ -6,14 +6,16 @@
 - localize response tokens
 - add parts of affinity steps to presentation
 - extend IProps to reduce redundance
+- loading while query
 - diagram
   - complete architecture
   - Login sequence diagram
   - Slice sequence diagram (f.e. Snackbar)
 - analyze build size & package sizes
 - remove outdated dir
-- test on someone elses pc, also note whether nodejs version msut be installed manually
+- test on someone elses pc, also note whether nodejs version must be installed manually
 - does backend/error stuff work?
+- ReadMe in root dir
 
 # Preparation before Workshop
 - Clone git repo
@@ -130,16 +132,33 @@ These issues can be resolved using resolutions.
 
 
 # Training Responsive Webapp React-Mui-rtk
+
+## Notes from talk with Johannes
+- usememo, usecallback, useref, testing?, state explained(flux), what triggers rerenders?
+- css modules vs styled components
+- api calls
+- error boundaries -> error page
+- routing concept
+- Zeitplan aufstellen und welche Zeiten als Puffer genommen werden können
+
+- Tipps
+  - Einer präsentiert -> kein presenter switch in teams
+  - Einen beauftragen auf Fragen im Chat hinzuweisen
+  - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
+  - Code & Bilder im Powerpoint
+
+## Own Notes
 Backend
+- useLocation?, useNavigate?
 - Api generation
 - Endpoints
-  - Login
+- Login
   - Swagger.json
     Frontend
   - Content
     - LoginPage (yup, react-hook-form)
-    - MenuPage Tabs (Url SearchParams)
-      - Tab1: MuiDataGrid
+    - MenuPage Tabs (Url SearchParams, Tabs)
+      - Tab1: Config based form generation
       - Tab2: ?
   - Routing
     - LoginRoute, ProtectedRoute
@@ -148,15 +167,15 @@ Backend
     - SnackbarSlice ()
     - codegen Api generation (Queries, Mutations, Tags)
   - Design
-    - How to Responsive (mobile -> desktop)
+    - How to Responsive (mobile -> desktop) (when leftover time)
     - Mui
       - Styling (sx vs styled vs theme)
   - QoL
     - EsLint
   - Optional
     - automated form generation (config -> react component -> validated form)
-    - Tabs (Mui)
     - Charts (recharts)
+    - Mui DataGrid
     - localization
     - color theming
     - Cookies
@@ -167,7 +186,17 @@ Backend
     - Seo
     - Web Security
     - Build Size & optimization
+    - rtk transformResponse
 
 Questions:
-- you use scss but we use Mui
-- Emotion already replaces Mui for SSR. 
+- Was ist bei react training gewünscht?
+- Was kann ich an Wissen voraussetzen?
+  - Routing
+  - Custom Components
+  - Local State Management
+  - Global State Management
+  - Api Usage
+  - Css basics
+  - Typescript Types
+- scss vs mui? wie viele verwenden mui jetzt/zeitnah?
+- auf pokedex projekt aufbauen oder separat?
