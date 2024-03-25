@@ -1,0 +1,11 @@
+import { createTheme, responsiveFontSizes, Theme } from '@mui/material';
+
+import defaultThemeOptions from './default/defaultThemeOptions';
+
+const createDefaultTheme = (): Theme => {
+  const themeOptions = defaultThemeOptions();
+  const theme = createTheme(themeOptions);
+  return responsiveFontSizes(theme);
+};
+
+export default createDefaultTheme;
