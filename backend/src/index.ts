@@ -1,8 +1,8 @@
 import express from "express";
-import setupSwagger from "./swagger/setupSwagger";
 import setupEndpoints from "./endpoint/setupEndpoints";
 import cors from "cors";
 import {PORT} from "./config";
+import setupSwagger from "./swagger/setupSwagger";
 
 async function Init(): Promise<void> {
     const app = express();

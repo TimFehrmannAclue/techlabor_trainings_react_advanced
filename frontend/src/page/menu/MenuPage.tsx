@@ -3,6 +3,8 @@ import React, { ReactElement } from 'react';
 import Page from '../../component/page/Page';
 import ContentTabs from '../../component/tab/ContentTabs';
 
+import PokemonTabContent from './tab/PokemonTabContent';
+
 /**
  * The main menu displayed after Login
  */
@@ -14,12 +16,14 @@ export default function MenuPage(): ReactElement {
       <ContentTabs
         contentTabs={[
           {
-            headerText: 'Menu',
-            content: <p>Menu</p>,
+            // todo use route names
+            headerText: 'Pokemon',
+            content: <PokemonTabContent />,
           },
           {
-            headerText: 'Table',
-            content: <p>Table</p>,
+            // todo use route names
+            headerText: 'Account',
+            content: <p>Account</p>,
           },
         ]}
       />

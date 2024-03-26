@@ -4,6 +4,7 @@ import { IGenericMap } from '../../type/common/map/IGenericMap';
 // All of these are displayed as Buttons in the AppBar
 type IRoute = 'INDEX' | 'MENU' | 'ACCOUNT';
 
+export const SEARCH_PARAM_TAB = 'tab';
 const ROUTE_CONFIGS: IGenericMap<IRoute, IRouteConfig> = {
   INDEX: {
     name: 'Login',
@@ -17,10 +18,9 @@ const ROUTE_CONFIGS: IGenericMap<IRoute, IRouteConfig> = {
   },
   ACCOUNT: {
     name: 'Account',
-    route: '/account',
+    route: `Menu?${SEARCH_PARAM_TAB}=Account`,
     requiresAuthentication: true,
   },
 };
 
 export default ROUTE_CONFIGS;
-export const SEARCH_PARAM_TAB = 'tab';

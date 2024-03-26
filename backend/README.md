@@ -1,6 +1,8 @@
 # ToDo
 - split up endpoints into files
 - test providing tags in annotations
+- update project dir & files documentation
+- shorten annotation
 
 # setup
 - install vite globally (f.e. via npm)

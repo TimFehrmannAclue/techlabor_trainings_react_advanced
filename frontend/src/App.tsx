@@ -10,7 +10,6 @@ import LoginRoute from './component/route/LoginRoute';
 import LoginPage from './page/login/LoginPage';
 import ProtectedRoute from './component/route/ProtectedRoute';
 import MenuPage from './page/menu/MenuPage';
-import AccountPage from './page/account/AccountPage';
 import ROUTE_CONFIGS from './config/routeConfig';
 import createDefaultTheme from './theme/createAppTheme';
 
@@ -38,12 +37,6 @@ export default function App(): ReactElement {
             <Route
               path={ROUTE_CONFIGS.MENU.route}
               element={(<ProtectedRoute><MenuPage /></ProtectedRoute>)}
-            />
-
-            {/* Logged in below */}
-            <Route
-              path={ROUTE_CONFIGS.ACCOUNT.route}
-              element={(<ProtectedRoute><AccountPage /></ProtectedRoute>)}
             />
           </Routes>
         </BrowserRouter>

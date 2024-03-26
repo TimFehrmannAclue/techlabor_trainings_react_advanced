@@ -1,4 +1,21 @@
 # ToDo
+- React Features festlegen (Vorstellung, Training, Ausblick)
+  1. Css-modules vs styled-components
+  2. Api-Generierung
+     - ToDo 1.1: Api Generation (Rtk-codegen & OpenApi.json)
+     - ToDo 1.2: Login Mutation (RTK-Query)
+     - ToDo 1.3: (Optional) Tag-Invalidierung
+  3. State Management (state explained flux?)
+    - ToDo 2.1: Writing Login Response into LoginSlice (RTK Slice & State Management)
+    - ToDo 2.2: Reading LoginData from LoginSlice (React-Router, RTK Slice & State Management)
+    - ToDo 2.3: Redirect based on LoginData (React-Router, Login-Guards)
+  4. UseMemo, useRef (triggers rerenders?)
+    - ToDo 3.1: f.e. child has cached arrays using useMemo
+    - ToDo 3.2: but to update one of that elements useRef can be used
+  5. (Optional) error boundaries -> error page
+  6. (Optional) Middleware Error Handling
+
+- isLoading
 - files for TabContents
 - document tab dir
 - add query
@@ -18,6 +35,7 @@
 - ReadMe in root dir
 
 # Preparation before Workshop
+- have look at last training
 - Clone git repo
 - IDE for Js/Ts (Webstorm, VsCode, etc.)
   - Make sure auto complete works
@@ -134,8 +152,7 @@ These issues can be resolved using resolutions.
 # Training Responsive Webapp React-Mui-rtk
 
 ## Notes from talk with Johannes
-- usememo, usecallback, useref, testing?, state explained(flux), what triggers rerenders?
-- css modules vs styled components
+- testing?,
 - api calls
 - error boundaries -> error page
 - routing concept
@@ -167,12 +184,12 @@ Backend
     - SnackbarSlice ()
     - codegen Api generation (Queries, Mutations, Tags)
   - Design
-    - How to Responsive (mobile -> desktop) (when leftover time)
     - Mui
       - Styling (sx vs styled vs theme)
   - QoL
     - EsLint
   - Optional
+    - How to Responsive (mobile -> desktop) (when leftover time)
     - automated form generation (config -> react component -> validated form)
     - Charts (recharts)
     - Mui DataGrid
