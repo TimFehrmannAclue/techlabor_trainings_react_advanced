@@ -28,7 +28,12 @@ export default function setupUserEndpoints(app: Express): void {
      *         content:
      *           application/json:
      *             schema:
-     *               type: string
+     *               type: object
+     *               required:
+     *                 - jwt
+     *               properties:
+     *                 jwt:
+     *                   type: string
      *       403:
      *         description: Authentication failed.
      */
@@ -38,7 +43,7 @@ export default function setupUserEndpoints(app: Express): void {
             console.info(email, password)
             const jwt = getUserJwtToken(email, password);
 
-            res.send(jwt);
+            res.send({jwt});
         } catch (e) {
             const {message} = e as Error;
             res.status(403).json({message});

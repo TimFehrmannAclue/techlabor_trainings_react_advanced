@@ -13,6 +13,7 @@ interface IProps {
  * Redirects to Menu if already logged in
  */
 export default function LoginRoute({ children }: IProps): ReactElement {
+  console.info('LoginRoute - triggered')
   const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
 
   if (isLoggedIn) {

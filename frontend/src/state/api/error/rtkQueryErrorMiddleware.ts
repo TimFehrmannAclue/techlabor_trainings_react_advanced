@@ -8,6 +8,7 @@ import getRtkQueryErrorText from './localizeRtkQueryError';
 const rtkQueryErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
   // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
   if (isRejectedWithValue(action)) {
+    console.info(action)
     const { status, error } = action.payload as {status: string, error: string};
     const text = getRtkQueryErrorText(status, error);
     api.dispatch(setSnackbar({ text, severity: 'error' }));

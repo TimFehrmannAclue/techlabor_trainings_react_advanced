@@ -1,61 +1,99 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, {
+  ReactElement, useMemo, useRef, useState,
+} from 'react';
 import {
-  Box, List, ListItem, ListItemText, TextField,
+  Box, Button, List, ListItem, Stack,
 } from '@mui/material';
 
-import { useGetPokemonQuery } from '../../../state/api/backend/raw/rawApi';
+import { IPokemon, useGetPokemonQuery, usePostPokemonMutation } from '../../../state/api/backend/raw/rawApi';
+import EditableTextField from '../EditableTextField';
 
 export default function PokemonTabContent(): ReactElement {
+  // Query
   const {
     data: getPokemonData,
     isLoading: getPokemonIsLoading,
     error: getPokemonError,
   } = useGetPokemonQuery();
-  const items = getPokemonData ?? [];
+  const pokemons = getPokemonData ?? [];
+  // Mutation
+  const [postPokemonData] = usePostPokemonMutation();
 
-  // todo use const items = useMemo(() => generateItems(), []);
-  const [editingId, setEditingId] = useState<number | undefined>(undefined);
-  const editingTextRef = useRef('');
-
-  const handleEdit = (id: number) => {
-    setEditingId(id);
+  const editedPokemonsMap = useRef<Record<number, string>>({});
+  const [hasEditedPokemons, setHasEditedPokemons] = useState(false);
+  const editPokemonName = (id: number, name: string) => {
+    editedPokemonsMap.current[id] = name;
+    setHasEditedPokemons(true);
   };
 
-  const handleChange = (value: string) => {
-    editingTextRef.current = value;
+  const handleSubmit = () => {
+    const updatedPokemonData: IPokemon[] = pokemons.map((pokemon) => {
+      const editedPokemonName = editedPokemonsMap.current[pokemon.id];
+      return editedPokemonName ? {
+        id: pokemon.id,
+        name: editedPokemonName,
+      } : pokemon;
+    });
+
+    console.info(updatedPokemonData);
+    postPokemonData({ body: updatedPokemonData });
   };
 
-  const handleSubmit = (id: number) => {
-    // todo submit
-    setEditingId(undefined);
-  };
+  console.info('rerender');
+
+  const memoizedList = useMemo(
+    () => pokemons.map((pokemon) => (
+      <ListItem key={pokemon.id}>
+        <EditableTextField
+          defaultValue={pokemon.name}
+          onChange={(value) => editPokemonName(pokemon.id, value)}
+        />
+      </ListItem>
+    )),
+    [pokemons],
+  );
 
   return (
-    <Box
-      id="TableTabContent"
+    <Stack
+      id="TableTabContentStack"
       sx={{
-        overflowY: 'auto',
+
         maxHeight: 600,
-        alignSelf: 'center',
-        backgroundColor: '#EFEFEF',
+        gap: 2,
+        alignItems: 'center',
       }}
     >
-      <List>
-        {items.map((item) => (
-          <ListItem key={item.id} button onClick={() => handleEdit(item.id)}>
-            {editingId === item.id ? (
-              <TextField
-                defaultValue={item.name}
-                onChange={(e) => handleChange(e.target.value)}
-                onBlur={() => handleSubmit(item.id)}
-                autoFocus
-              />
-            ) : (
-              <ListItemText primary={item.name} />
-            )}
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+      <Box
+        id="TableTabListBox"
+        sx={{
+          overflowY: 'auto',
+          alignSelf: 'center',
+          backgroundColor: '#EFEFEF',
+        }}
+      >
+        <List>{memoizedList}</List>
+      </Box>
+      <Button
+        variant="contained"
+        onClick={() => {
+        }}
+        disabled={!hasEditedPokemons}
+        sx={{
+          width: 'min-content',
+        }}
+      >
+        Reset
+      </Button>
+      <Button
+        variant="contained"
+        onClick={handleSubmit}
+        disabled={!hasEditedPokemons}
+        sx={{
+          width: 'min-content',
+        }}
+      >
+        Submit
+      </Button>
+    </Stack>
   );
 }

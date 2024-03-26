@@ -1,6 +1,10 @@
-import getPokemonDb from "../../repository/pokemon/PokemonRepository";
 import IPokemon from "../../../type/frontend/pokemon/IPokemon";
+import {getPokemonDb, savePokemonDb} from "../../repository/pokemon/PokemonRepository";
 
-export default function getPokemon(): IPokemon[] {
+export function getPokemon(): IPokemon[] {
     return getPokemonDb();
+}
+
+export function savePokemon(pokemon: IPokemon[]): void {
+    savePokemonDb(pokemon);
 }

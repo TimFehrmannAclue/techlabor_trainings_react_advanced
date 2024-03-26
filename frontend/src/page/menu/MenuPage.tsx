@@ -4,6 +4,7 @@ import Page from '../../component/page/Page';
 import ContentTabs from '../../component/tab/ContentTabs';
 
 import PokemonTabContent from './tab/PokemonTabContent';
+import TestTab from './tab/TestTab';
 
 /**
  * The main menu displayed after Login
@@ -23,7 +24,7 @@ export default function MenuPage(): ReactElement {
           {
             // todo use route names
             headerText: 'Account',
-            content: <p>Account</p>,
+            content: <TestTab />,
           },
         ]}
       />

@@ -8,6 +8,13 @@ const injectedRtkApi = api.injectEndpoints({
     getPokemon: build.query<GetPokemonApiResponse, GetPokemonApiArg>({
       query: () => ({ url: '/pokemon' }),
     }),
+    postPokemon: build.mutation<PostPokemonApiResponse, PostPokemonApiArg>({
+      query: (queryArg) => ({
+        url: '/pokemon',
+        method: 'POST',
+        body: queryArg.body,
+      }),
+    }),
     postLogin: build.mutation<PostLoginApiResponse, PostLoginApiArg>({
       query: (queryArg) => ({
         url: '/login',
@@ -24,8 +31,15 @@ export type PostDummyApiArg = void;
 export type GetPokemonApiResponse =
   /** status 200 All Pokemon and more! */ IPokemon[];
 export type GetPokemonApiArg = void;
+export type PostPokemonApiResponse =
+  /** status 200 Saving Pokemon successful. */ IPokemon[];
+export type PostPokemonApiArg = {
+  body: IPokemon[];
+};
 export type PostLoginApiResponse =
-  /** status 200 Authentication successful. */ string;
+  /** status 200 Authentication successful. */ {
+    jwt: string;
+  };
 export type PostLoginApiArg = {
   body: {
     email: string;
@@ -45,5 +59,6 @@ export const {
   usePostDummyMutation,
   useGetPokemonQuery,
   useLazyGetPokemonQuery,
+  usePostPokemonMutation,
   usePostLoginMutation,
 } = injectedRtkApi;

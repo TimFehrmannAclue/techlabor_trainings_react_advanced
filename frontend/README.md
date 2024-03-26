@@ -1,20 +1,26 @@
 # ToDo
 - React Features festlegen (Vorstellung, Training, Ausblick)
-  1. Css-modules vs styled-components
-  2. Api-Generierung
-     - ToDo 1.1: Api Generation (Rtk-codegen & OpenApi.json)
-     - ToDo 1.2: Login Mutation (RTK-Query)
-     - ToDo 1.3: (Optional) Tag-Invalidierung
-  3. State Management (state explained flux?)
-    - ToDo 2.1: Writing Login Response into LoginSlice (RTK Slice & State Management)
-    - ToDo 2.2: Reading LoginData from LoginSlice (React-Router, RTK Slice & State Management)
-    - ToDo 2.3: Redirect based on LoginData (React-Router, Login-Guards)
-  4. UseMemo, useRef (triggers rerenders?)
-    - ToDo 3.1: f.e. child has cached arrays using useMemo
-    - ToDo 3.2: but to update one of that elements useRef can be used
-  5. (Optional) error boundaries -> error page
-  6. (Optional) Middleware Error Handling
+  1. Css-modules vs styled-components (15m, Leon?)
+  2. Api-Generierung (10m + 15m, Tim?)
+    - ToDo 2.1: Api Generation (Rtk-codegen & OpenApi.json)
+    - ToDo 2.2: Import generated login endpoint & use it 
+  Kurze Pause (10m)
+  3. Redux State Management (Slice - explain via flux?) (20m + 30m, Leon?)
+    - ToDo 1.1: Writing Login Response into LoginSlice (RTK Slice & State Management)
+    - ToDo 1.2: Reading LoginData from LoginSlice (React-Router, RTK Slice & State Management)
+    - ToDo 1.3: LoginRoute Redirect based on LoginData (React-Router, Login-Guards)
+  Pause & Essen bestellen (10m)
+  4. Special React Hooks (Todo useCallback?) (20m + 40m, Tim?)
+     - ToDo 2.1 UseMemo
+     - ToDo 2.2 UseRef
+     - ToDo 2.3 Fix Disabled
+     - ToDo 2.4 Tag Invalidation
+  5. Ausblick (Signals, etc.) (20-30m)
+  6. (Optional) error boundaries -> error page
+  7. (Optional) Middleware Error Handling
 
+#
+- Todo Fragen für Teilnehmer einbauen
 - isLoading
 - files for TabContents
 - document tab dir

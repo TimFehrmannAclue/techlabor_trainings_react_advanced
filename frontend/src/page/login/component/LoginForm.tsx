@@ -24,7 +24,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const [login, {
-    data: jwt,
+    data: loginData,
     isLoading: loginIsLoading,
     error: loginError,
   }] = usePostLoginMutation();
@@ -41,13 +41,15 @@ export default function LoginForm() {
       return;
     }
 
-    if (!jwt) {
+    if (!loginData) {
       return;
     }
 
+    console.info(loginData.jwt)
+
     // No need to navigate as LoginRoute automatically redirects
-    dispatch(setLoggedIn(jwt));
-  }, [jwt, loginIsLoading, loginError]);
+    dispatch(setLoggedIn(loginData.jwt));
+  }, [loginData, loginIsLoading, loginError]);
 
   // Form
   const {
