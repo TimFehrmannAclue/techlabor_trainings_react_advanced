@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import {
-  Stack, styled, Tab, Tabs,
+  Stack, Tab, Tabs,
 } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 
@@ -10,8 +10,6 @@ import IContentTab from '../../../type/component/tab/IContentTab';
 function findContentTabIndex(contentTabs: IContentTab[], text: string): number {
   return contentTabs.findIndex(({ headerText }) => headerText.toLowerCase() === text.toLowerCase());
 }
-
-const StyledTab = styled(Tab)(() => ({}));
 
 interface IProps {
   contentTabs: IContentTab[];
@@ -43,7 +41,7 @@ export default function ContentTabs(props: IProps): ReactElement {
   return (
     <>
       <Stack
-        id="ContentTabs"
+        id="ContentTabsHeaderStack"
         sx={{
           borderBottom: 1,
           borderColor: 'transparent',
@@ -52,18 +50,20 @@ export default function ContentTabs(props: IProps): ReactElement {
         }}
       >
         <Tabs
+          id="HeaderTabsContainer"
           value={activeContentTabIndex}
           onChange={(e, newTabIndex) => (handleSetTabIndex(newTabIndex))}
         >
           {contentTabs.map(({ headerText }) => (
-            <StyledTab
+            <Tab
+              id="HeaderTab"
               key={headerText}
               label={headerText}
             />
           ))}
         </Tabs>
       </Stack>
-      <Stack id="TabContentStack" width="inherit" height="inherit" flex={1}>
+      <Stack id="ContentTabsContentStack" width="inherit" height="auto" flex={1}>
         {activeContentTab.content}
       </Stack>
     </>

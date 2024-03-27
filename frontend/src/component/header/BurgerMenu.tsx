@@ -29,17 +29,17 @@ export default function BurgerMenu({ pageRouteConfigs }: IProps) {
   const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
 
   // Actions
-  const handleNavigate = (route: string) => {
-    handleClose();
-    navigate(route);
-  };
-
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleNavigate = (route: string) => {
+    handleClose();
+    navigate(route);
   };
 
   // Hide empty Menu

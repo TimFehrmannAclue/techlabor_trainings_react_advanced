@@ -18,7 +18,7 @@ export default function AppLogo() {
   return (
     <Root
       component="img"
-            // @ts-ignore This is correct
+      // @ts-ignore This is correct
       src={Logo}
     />
   );

@@ -11,7 +11,8 @@ const PokemonRepository: { Pokemon: IPokemon[] } = {
 console.info(`Created ${PokemonRepository.Pokemon.length} name permutations from ${PokemonNames.length} Pokemon names.`)
 
 export function getPokemonDb(): IPokemon[] | never {
-    return PokemonRepository.Pokemon;
+    return PokemonRepository.Pokemon.slice(0, 100);
+    // return PokemonRepository.Pokemon;
 }
 
 export function savePokemonDb(pokemon: IPokemon[]): void {

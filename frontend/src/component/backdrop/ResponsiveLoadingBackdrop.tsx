@@ -3,11 +3,12 @@ import { Stack, styled, SxProps } from '@mui/material';
 
 import LoadingBackdrop from './LoadingBackdrop';
 
-const Root = styled(Stack)(() => ({
+const Root = styled(Stack)(({ theme }) => ({
   position: 'absolute',
   height: '100%',
   width: '100%',
   zIndex: 100,
+  borderRadius: theme.shape.borderRadius,
 }));
 
 interface IProps {

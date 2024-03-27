@@ -10,17 +10,13 @@ const defaultPaletteLight: PaletteOptions = {
     main: '#f7f0de',
   },
   background: {
-    default: '#fffdf8',
+    default: '#f3f6f999',
     paper: '#ffffff',
   },
   action: {
     disabledBackground: 'rgb(69,178,237)',
     disabled: 'rgba(255,255,255,0.5)',
   },
-  // error: {
-  //  main: '#ffffff',
-  // },
-  // Custom types
   overlay: {
     main: '#0000004d',
   },

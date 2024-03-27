@@ -26,7 +26,7 @@ export default function PageBody({ children }: IProps) {
 
   return (
     <StyledBox
-      id="Body"
+      id="PageBody"
       $isLoginPage={isLoginPage}
     >
       {children}

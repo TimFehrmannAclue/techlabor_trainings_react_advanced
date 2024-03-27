@@ -24,11 +24,14 @@ import { rawApi } from '../raw/rawApi';
  */
 const enhancedApi = rawApi.enhanceEndpoints({
   addTagTypes: [
-    'Table',
+    'Pokemon',
   ],
   endpoints: {
-    getTables: {
-      providesTags: ['Table'],
+    getPokemon: {
+      providesTags: ['Pokemon'],
+    },
+    postPokemon: {
+      invalidatesTags: ['Pokemon'],
     },
   },
 });

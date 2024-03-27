@@ -19,28 +19,41 @@
   6. (Optional) error boundaries -> error page
   7. (Optional) Middleware Error Handling
 
-#
-- Todo Fragen für Teilnehmer einbauen
-- isLoading
+# Training Responsive Webapp React-Mui-rtk
+## Notes from talk with Johannes
+- api calls
+- error boundaries -> error page
+- routing concept
+- Zeitplan aufstellen und welche Zeiten als Puffer genommen werden können
+
+- Tipps
+  - Einer präsentiert -> kein presenter switch in teams
+  - Einen beauftragen auf Fragen im Chat hinzuweisen
+  - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
+  - Code & Bilder im Powerpoint
+
+## ToDo (unsorted)
+- Fragen für Teilnehmer einbauen
+- use cache when changing back to pokemon tab to reduce load time
+- loading on login -> menuPage
 - files for TabContents
-- document tab dir
-- add query
-  - add tag invalidations
-- localize response tokens
-- add parts of affinity steps to presentation
-- extend IProps to reduce redundance
-- loading while query
+- update README for all dir & packages
+- Add ReadMe in root dir
+- loading overlay for login
+- code comments
+- code todos
 - diagram
   - complete architecture
   - Login sequence diagram
   - Slice sequence diagram (f.e. Snackbar)
 - analyze build size & package sizes
-- remove outdated dir
 - test on someone elses pc, also note whether nodejs version must be installed manually
-- does backend/error stuff work?
-- ReadMe in root dir
+### Optional
+- localize response tokens / does backend/error stuff work?
+- add parts of affinity designer for ui concepts steps to presentation
+- extend IProps to reduce redundancy
 
-# Preparation before Workshop
+## Preparation before Workshop
 - have look at last training
 - Clone git repo
 - IDE for Js/Ts (Webstorm, VsCode, etc.)
@@ -147,79 +160,4 @@ Not Used during runtime & not part of build.
 - http-server: Run build from dist dir locally.
 - ts-node: Required by Rtk Codegen.
 - typescript: A common typescript version for all developers of this project.
-- vite: A very fast build tool.
-### resolutions
-Sometimes there are incompatibilities between package dependencie.
-Like two packages using same package with different version.
-These issues can be resolved using resolutions.
-- "@mui/styled-engine: npm:@mui/styled-engine-sc@latest": Fix of open Mui issue
-
-
-# Training Responsive Webapp React-Mui-rtk
-
-## Notes from talk with Johannes
-- testing?,
-- api calls
-- error boundaries -> error page
-- routing concept
-- Zeitplan aufstellen und welche Zeiten als Puffer genommen werden können
-
-- Tipps
-  - Einer präsentiert -> kein presenter switch in teams
-  - Einen beauftragen auf Fragen im Chat hinzuweisen
-  - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
-  - Code & Bilder im Powerpoint
-
-## Own Notes
-Backend
-- useLocation?, useNavigate?
-- Api generation
-- Endpoints
-- Login
-  - Swagger.json
-    Frontend
-  - Content
-    - LoginPage (yup, react-hook-form)
-    - MenuPage Tabs (Url SearchParams, Tabs)
-      - Tab1: Config based form generation
-      - Tab2: ?
-  - Routing
-    - LoginRoute, ProtectedRoute
-  - State
-    - LoginSlice (rtk query & localstorage)
-    - SnackbarSlice ()
-    - codegen Api generation (Queries, Mutations, Tags)
-  - Design
-    - Mui
-      - Styling (sx vs styled vs theme)
-  - QoL
-    - EsLint
-  - Optional
-    - How to Responsive (mobile -> desktop) (when leftover time)
-    - automated form generation (config -> react component -> validated form)
-    - Charts (recharts)
-    - Mui DataGrid
-    - localization
-    - color theming
-    - Cookies
-    - Dialog/Prompt
-    - Signals (got to read into it myself)
-    - Deployment
-    - Reusability of components
-    - Seo
-    - Web Security
-    - Build Size & optimization
-    - rtk transformResponse
-
-Questions:
-- Was ist bei react training gewünscht?
-- Was kann ich an Wissen voraussetzen?
-  - Routing
-  - Custom Components
-  - Local State Management
-  - Global State Management
-  - Api Usage
-  - Css basics
-  - Typescript Types
-- scss vs mui? wie viele verwenden mui jetzt/zeitnah?
-- auf pokedex projekt aufbauen oder separat?
+- vite: A very fast build tool. sue

@@ -1,21 +1,45 @@
-import { TextField } from '@mui/material';
-import { ReactElement, useRef } from 'react';
+import { styled, TextField } from '@mui/material';
+import {
+  ChangeEvent, ForwardedRef, forwardRef, ReactElement, useImperativeHandle, useState,
+} from 'react';
 
-export default function EditableTextField({ defaultValue, onChange }: { defaultValue: string; onChange: (value: string) => void }): ReactElement {
-  const textFieldRef = useRef<HTMLInputElement>(null);
+const StyledTextField = styled(TextField)(() => ({
+  borderRadius: 0,
+  '&& .MuiInputBase-input': {
+    boxShadow: 'none',
+  },
+}));
 
-  const handleChange = () => {
-    if (textFieldRef.current) {
-      onChange(textFieldRef.current.value);
-    }
+interface IProps {
+  defaultValue: string;
+  onChange: (value: string) => void;
+}
+
+function EditableTextField({
+  defaultValue,
+  onChange,
+}: IProps, ref: ForwardedRef<any>): ReactElement {
+  const [value, setValue] = useState(defaultValue);
+
+  useImperativeHandle(ref, () => ({
+    reset() {
+      setValue(defaultValue);
+    },
+  }));
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    onChange(newValue);
   };
 
   return (
-    <TextField
-      defaultValue={defaultValue}
-      inputRef={textFieldRef}
+    <StyledTextField
+      variant="standard"
+      value={value}
       onChange={handleChange}
-      autoFocus
     />
   );
 }
+
+export default forwardRef(EditableTextField);
