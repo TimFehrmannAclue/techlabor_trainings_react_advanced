@@ -8,7 +8,7 @@ const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
   backgroundColor: theme.palette.overlay.main,
   borderRadius: theme.shape.borderRadius,
   flexDirection: 'column',
-  gap: 16,
+  gap: theme.spacing(2),
 }));
 
 export default function LoadingBackdrop() {
