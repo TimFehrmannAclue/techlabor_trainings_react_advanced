@@ -36,12 +36,14 @@
 - documentation
   - add links in readme & code to useful documentation
   - code todos
+    - remove redundant sub-directories for f.e. backendApi & rename to pokemonApi 
     - split up into branches
   - diagram
     - Slice sequence diagram (f.e. Snackbar)
     - useMemo
     - useRef
     - useImperativeHandle
+    - pitfalls with nested objects in useState due to direct references to memory?
 - optimization
   - remove outdated images, etc.
   - analyze build size & package sizes
@@ -50,8 +52,11 @@
   - add structure
   - explain project structure
   - add content
+  - entry slide: what makes someone advanced in react?
+    - less boilerplate, less nesting, performance comes last
   - decide for german or english
   - Fragen für Teilnehmer einbauen
+  - add file names to snippets & sources to links/images
 - test
   - test on someone elses pc, also note whether nodejs version must be installed manually (f.e. Matthäus, Sandria)
 - feedback
