@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement } from 'react';
 import { Typography } from '@mui/material';
 
 export default function AccountTab(): ReactElement {

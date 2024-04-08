@@ -7,21 +7,24 @@ import { Control, Controller } from 'react-hook-form';
 import { IRefType } from '../../../type/component/common/IRefType';
 
 interface IProps {
-    id?: string;
-    field: 'email' | 'password'; // todo move?
+    field: 'email' | 'password';
     label: string;
+    control: Control<any>;
+    id?: string;
     type?: 'string' | 'number' | 'password';
     placeholder?: string;
     required?: boolean;
     variant?: TextFieldVariants;
     disabled?: boolean;
     inputProps?: InputBaseComponentProps | undefined;
-    control: Control<any>;
     sx?: SxProps;
 }
 
 /**
  * A validated TextField
+ * Displays errors after leaving TextField (onBlur) to avoid error text flickering while typing
+ * Removes error while typing to give immediate feedback
+ * Uses react-hook-form to access state and yup is already integrated into the form component for validation
  */
 export default function FormTextField(props: IProps) {
   const {
@@ -49,7 +52,7 @@ export default function FormTextField(props: IProps) {
         field: { onChange, onBlur, value },
         formState,
       }) => {
-        const errorText = formState.errors[field] && `${formState.errors[field]?.message}`;
+        const optionalErrorText = formState.errors[field] && `${formState.errors[field]?.message}`;
         return (
           <TextField
             id={id}
@@ -58,9 +61,7 @@ export default function FormTextField(props: IProps) {
             label={label}
             placeholder={placeholder}
             value={value}
-            inputProps={{
-              ...inputProps,
-            }}
+            inputProps={{ ...inputProps }}
             onChange={(e) => {
               onChange(e);
               // Will remove existing error onFocus but not display new ones
@@ -69,21 +70,16 @@ export default function FormTextField(props: IProps) {
               }
             }}
             onBlur={onBlur}
-            onKeyDown={(e) => {
-              // Multiline input should allow f.e. line breaks
-              if (e.key === 'Enter') {
-                textFieldRef.current?.blur();
-              }
-            }}
             required={required}
             type={type ?? 'default'}
             error={!!formState.errors[field]}
-            helperText={errorText ?? ' '}
+            helperText={optionalErrorText ?? ' '}
             disabled={disabled}
+            // Ui Fix: ErrorTexts shall only have a backgroundColor when being displayed
             sx={{
               ...sx,
               '& .MuiFormHelperText-root': {
-                backgroundColor: errorText ? 'white' : 'transparent',
+                backgroundColor: optionalErrorText ? 'white' : 'transparent',
               },
             }}
           />

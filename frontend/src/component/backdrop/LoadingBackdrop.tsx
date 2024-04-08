@@ -11,6 +11,9 @@ const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
+/**
+ * Displays a loading animation with loading text on a darkened overlay
+ */
 export default function LoadingBackdrop() {
   return (
     <StyledBackdrop id="LoadingBackdrop" open>

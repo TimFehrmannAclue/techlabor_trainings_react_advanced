@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Button, Grid, Stack, Typography,
+  Button, Grid, Stack, styled, Typography,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -10,15 +10,16 @@ import { object } from 'yup';
 import Page from '../../component/page/Page';
 import SimpleBackground from '../../component/image/SimpleBackground';
 import backgroundImage from '../../image/app_background_image_hd_upscaled.jpg';
-import FormTextField from '../../component/form/TextField';
+import FormTextField from '../../component/form/FormTextField';
 import { usePostLoginMutation } from '../../state/api/backend/raw/rawApi';
 import IRtkError from '../../../type/rtk/IRtkError';
 import { setSnackbar } from '../../state/slice/snackbarSlice';
 import { setLoggedIn } from '../../state/slice/loginSlice';
 import yup from '../../config/yupLocalizationConfig';
-import LoadingBackdrop from '../../component/backdrop/LoadingBackdrop';
 import ResponsiveLoadingBackdrop from '../../component/backdrop/ResponsiveLoadingBackdrop';
 
+// Validation for a single form with multiple input
+// https://github.com/jquense/yup
 const yupSchema = object({
   email: yup.string()
     .email()
@@ -27,6 +28,30 @@ const yupSchema = object({
     .required()
     .min(4),
 });
+
+const HeaderTypography = styled(Typography)(({ theme }) => ({
+  fontWeight: 'bold',
+  fontFamily: 'Cooper Black',
+  paddingBottom: theme.spacing(8),
+}));
+
+const LoginGrid = styled(Grid)(({ theme }) => ({
+  paddingBottom: theme.spacing(24),
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const LoginForm = styled('form')(() => ({
+  maxWidth: 400,
+  flex: 1,
+}));
+
+const TextFieldStack = styled(Stack)(({ theme }) => ({
+  gap: theme.spacing(1),
+  paddingBottom: theme.spacing(4),
+  alignItems: 'center',
+}));
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -37,7 +62,9 @@ export default function LoginPage() {
     error: loginError,
   }] = usePostLoginMutation();
 
+  // Handle login Response
   useEffect(() => {
+    // Display error
     if (loginError) {
       console.error('LoginForm - loginError: ', loginError);
       // todo set type in rtk query
@@ -48,28 +75,26 @@ export default function LoginPage() {
       }));
     }
 
-    if (loginIsLoading) {
-      return;
-    }
-
-    if (!loginData) {
+    // No Response
+    if (loginIsLoading || !loginData) {
       return;
     }
 
     console.info(loginData.jwt);
-
     // No need to navigate as LoginRoute automatically redirects
     dispatch(setLoggedIn(loginData.jwt));
   }, [loginData, loginIsLoading, loginError]);
 
-  // Form
+  // An input form using react-hook-form
   const {
     getValues,
     control,
     formState: { errors },
     handleSubmit: formSubmit,
   } = useForm({
+    // Validate when exiting input field
     mode: 'onBlur',
+    // Integrating yup for validation
     resolver: yupResolver(yupSchema),
     defaultValues: {
       email: 'user@mail.com',
@@ -79,99 +104,63 @@ export default function LoginPage() {
   const hasErrors = Object.keys(errors).length > 0;
 
   const handleSubmit = () => {
-    const {
-      email,
-      password,
-    } = getValues();
-    login({
-      body: {
-        email,
-        password,
-      },
-    });
+    // Get data entered into form from react-hook-form state
+    const { email, password } = getValues();
+    // Run redux-toolkit login mutation
+    login({ body: { email, password } });
   };
-  return (
-    <Page
-      headerText=""
-      sx={{ padding: 0 }}
-    >
 
+  return (
+    <Page sx={{ padding: 0 }}>
       {loginIsLoading ? <ResponsiveLoadingBackdrop /> : null}
       <SimpleBackground backgroundImage={backgroundImage} />
-      <Grid
+      <LoginGrid
         item
         md={12}
         container
-        pb={24}
-        sx={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
       >
-        <form
+        <LoginForm
           onSubmit={formSubmit(handleSubmit)}
           noValidate
-          style={{
-            maxWidth: 400,
-            flex: 1,
-          }}
         >
-          <Stack
-            id="FormStack"
-            spacing={2}
-            flex={1}
-            alignItems="center"
+          <HeaderTypography
+            id="LOGOIN"
+            variant="h1"
           >
+            LOGOIN
+          </HeaderTypography>
+          <TextFieldStack id="TextFieldStack">
+            <FormTextField
+              id="EmailTextField"
+              key="email"
+              control={control}
+              label="Email"
+              field="email"
+              variant="outlined"
+              required
+            />
+            <FormTextField
+              id="PasswordTextField"
+              key="password"
+              control={control}
+              field="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              required
+            />
+          </TextFieldStack>
 
-            <Typography
-              id="LOGOIN"
-              variant="h1"
-              fontWeight="bold"
-              fontFamily="Cooper Black"
-              pb={8}
-            >
-              LOGOIN
-            </Typography>
-
-            <Stack
-              id="FormElementStack"
-              spacing={1}
-              pb={4}
-              sx={{
-                alignItems: 'center',
-              }}
-            >
-              <FormTextField
-                key="email"
-                control={control}
-                field="email"
-                label="Email"
-                required
-                variant="outlined"
-              />
-              <FormTextField
-                key="password"
-                control={control}
-                field="password"
-                label="Password"
-                required
-                type="password"
-                variant="outlined"
-              />
-            </Stack>
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              disabled={hasErrors}
-            >
-              Anmelden
-            </Button>
-          </Stack>
-        </form>
-      </Grid>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={hasErrors}
+          >
+            Login
+          </Button>
+        </LoginForm>
+      </LoginGrid>
     </Page>
   );
 }

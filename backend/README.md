@@ -1,10 +1,4 @@
-# ToDo
-- split up endpoints into files
-- test providing tags in annotations
-- update project dir & files documentation
-- shorten annotation
-
-# setup
+# Setup
 - install vite globally (f.e. via npm)
 - yarn start
 
@@ -39,7 +33,7 @@ These types can be passed to the frontend via swagger.json.
 F.e. the jwt provided by the /login endpoint is a string, but it contains data in form of IUser.
 This type can not be part of an endpoint annotation due to swagger limitations but is added via magic.
 This is not relevant for the training.
-## typeObjects
+## typeObject
 Custom directory for generated TypeObjects (Not a common directory).
 ## .gitignore
 Contains all files to not be tracked by git.
@@ -61,6 +55,7 @@ Used during runtime & part of build
 ### devDependencies
 Not Used during runtime & not part of build
 - @types/*: Additional package types for Typescript.
+- eslint: Enforces code styling based on config. Airbnb provides good config.
 - ts-node: To start node.js server with Typescript.
 - typescript: A common typescript version for all developers of this project.
 ## tsconfig.json

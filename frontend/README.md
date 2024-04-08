@@ -2,13 +2,13 @@
 - React Features festlegen (Vorstellung, Training, Ausblick)
   1. Css-modules vs styled-components (15m, Leon?)
   2. Api-Generierung (10m + 15m, Tim?)
-    - ToDo 2.1: Api Generation (Rtk-codegen & OpenApi.json)
-    - ToDo 2.2: Import generated login endpoint & use it 
+    - ToDo 1.1: Api Generation (Rtk-codegen & OpenApi.json)
+    - ToDo 1.2: Import generated login endpoint & use it 
   Kurze Pause (10m)
   3. Redux State Management (Slice - explain via flux?) (20m + 30m, Leon?)
-    - ToDo 1.1: Writing Login Response into LoginSlice (RTK Slice & State Management)
-    - ToDo 1.2: Reading LoginData from LoginSlice (React-Router, RTK Slice & State Management)
-    - ToDo 1.3: LoginRoute Redirect based on LoginData (React-Router, Login-Guards)
+    - ToDo 2.1: Writing Login Response into LoginSlice (RTK Slice & State Management)
+    - ToDo 2.2: Reading LoginData from LoginSlice (React-Router, RTK Slice & State Management)
+    - ToDo 2.3: LoginRoute Redirect based on LoginData (React-Router, Login-Guards)
   Pause & Essen bestellen (10m)
   4. Special React Hooks (Todo useCallback?) (20m + 40m, Tim?)
      - ToDo 2.1 UseMemo
@@ -33,22 +33,32 @@
   - Code & Bilder im Powerpoint
 
 ## ToDo (unsorted)
-- Fragen für Teilnehmer einbauen
-- use cache when changing back to pokemon tab to reduce load time
-- loading on login -> menuPage
-- files for TabContents
-- update README for all dir & packages
-- Add ReadMe in root dir
-- loading overlay for login
-- code comments
-- code todos
-- diagram
-  - complete architecture
-  - Login sequence diagram
-  - Slice sequence diagram (f.e. Snackbar)
-- analyze build size & package sizes
-- test on someone elses pc, also note whether nodejs version must be installed manually
+- documentation
+  - add links in readme & code to useful documentation
+  - code todos
+    - split up into branches
+  - diagram
+    - Slice sequence diagram (f.e. Snackbar)
+    - useMemo
+    - useRef
+    - useImperativeHandle
+- optimization
+  - remove outdated images, etc.
+  - analyze build size & package sizes
+  - set rtk error type for login in backend annotation
+- presentation
+  - add structure
+  - explain project structure
+  - add content
+  - decide for german or english
+  - Fragen für Teilnehmer einbauen
+- test
+  - test on someone elses pc, also note whether nodejs version must be installed manually (f.e. Matthäus, Sandria)
+- feedback
+  - show to Johannes
 ### Optional
+- use cache when changing back to pokemon tab to reduce load time
+- move snackbar into branch
 - localize response tokens / does backend/error stuff work?
 - add parts of affinity designer for ui concepts steps to presentation
 - extend IProps to reduce redundancy
@@ -60,9 +70,7 @@
   - Make sure auto complete works
 - Setup frontend & backend (see README.md -> Setup)
 
-
 # Setup
-- start backend (See backend README.md)
 - install vite globally (f.e. via npm)
 - yarn start
 
@@ -73,7 +81,7 @@ Stands for distributable, is not tracked in git and contains a complete build.
 Packages installed by running *yarn* and not tracked in git.
 ## public
 Images & configuration files used by index.html.
-### favicon.cio
+### favicon.ico
 The small icon on the browser tab.
 ### manifest.json
 Information for search engines & browser about this website.
@@ -84,8 +92,6 @@ Custom general purpose react components.
 Custom files to store configuration values in a singular place.
 ### image
 Images used by react components.
-### localisation
-Translating tokens into text for user (f.e. SERVER_ERROR -> 'Server error').
 ### page
 Each page has a url route like f.e. /login and content for it.
 Pages use and configure react-components for custom behaviour.
@@ -97,7 +103,7 @@ State management for data received from the backend using redux-toolkit-query
 - emptyApi.ts: The rtk web-client generated from swagger.json will be injected into this api.
 - enhancedApi.ts: Manually edit generated rtk endpoints & query cache invalidation using tags.
 - rawApi.ts: Rtk web-client & types generated from swagger.json.
-- swagger.json: This is a local backup file in case backend swagger.json is not available.
+- swagger.json: This is a local backup file in case backend swagger.json is not available.![img.png](img.png)
 - openapi-config.ts: Config for redux-toolkit-query-codegen to generate rawApi.ts.
 ##### error
 Error handling for redux-toolkit-query. 
@@ -136,11 +142,10 @@ They can f.e. be run using *yarn start*
 - *codegenCleanup* Applies Eslint onto the generated http-web-client.
 ### dependencies
 Used during runtime & part of build.
+- @emotion: Styling Library used by Mui
 - @hookform/resolvers: extends react-hook-form to allow custom validation using f.e. yup.
 - @mui/icons-material: Icons as react components.
 - @mui/material: Provides pre-styled components & builds on Css.
-- @mui/styled-engine: required to use Mui as styling library since default is now @Emotion.
-- @mui/system: Provides more styling utility like f.e sx prop.
 - @reduxjs/toolkit: Redux with way less boilerplate.
 - jwt-decode: Decode jwt tokens.
 - react: Wraps html elements using components & provides state management.

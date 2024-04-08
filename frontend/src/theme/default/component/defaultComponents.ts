@@ -4,6 +4,7 @@ import { Theme } from '@mui/material';
 const defaultComponents = (theme: Theme) => ({
   // Global styles
   MuiCssBaseline: {
+    // Global style for Scrollbar
     styleOverrides: {
       '&::-webkit-scrollbar': {
         width: '10px',
@@ -21,6 +22,7 @@ const defaultComponents = (theme: Theme) => ({
       },
     },
   },
+  // The label above input fields
   MuiFormLabel: {
     styleOverrides: {
       root: {
@@ -33,6 +35,7 @@ const defaultComponents = (theme: Theme) => ({
       },
     },
   },
+  // Error texts below input fields
   MuiFormHelperText: {
     styleOverrides: {
       root: {

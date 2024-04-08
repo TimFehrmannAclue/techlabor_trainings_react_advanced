@@ -15,12 +15,11 @@ interface IProps {
   onChange: (value: string) => void;
 }
 
-function EditableTextField({
-  defaultValue,
-  onChange,
-}: IProps, ref: ForwardedRef<any>): ReactElement {
+function EditableTextField({ defaultValue, onChange }: IProps, ref: ForwardedRef<any>): ReactElement {
   const [value, setValue] = useState(defaultValue);
 
+  // useImperativeHandle allows child components to pass references to parent components.
+  // This allows the parent component to reset the child component.
   useImperativeHandle(ref, () => ({
     reset() {
       setValue(defaultValue);

@@ -6,12 +6,16 @@ interface IProps {
     sx?: SxProps;
 }
 
+/**
+ * Default styles for an image background
+ * @param backgroundImage Any image
+ * @param sx optional styles
+ */
 export default function SimpleBackground({ backgroundImage, sx }: IProps): ReactElement {
   return (
     <Box
       id="Background"
       sx={{
-        ...sx,
         zIndex: -10,
         position: 'absolute',
         width: '100%',
@@ -20,6 +24,7 @@ export default function SimpleBackground({ backgroundImage, sx }: IProps): React
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPositionX: 'center',
+        ...sx,
       }}
     />
   );

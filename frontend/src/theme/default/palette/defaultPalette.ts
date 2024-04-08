@@ -17,6 +17,7 @@ const defaultPaletteLight: PaletteOptions = {
     disabledBackground: 'rgb(69,178,237)',
     disabled: 'rgba(255,255,255,0.5)',
   },
+  // Custom object which has been added via palette-mui.d.ts
   overlay: {
     main: '#0000004d',
   },

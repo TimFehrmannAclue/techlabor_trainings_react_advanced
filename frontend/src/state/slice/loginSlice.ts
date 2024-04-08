@@ -18,6 +18,7 @@ const initialState: ILoginState = {
   token: '',
 };
 
+// Storing login data in localStorage to be persistent across page refresh
 const LOGIN_STATE_TOKEN = 'LOGIN_STATE_TOKEN';
 const loadedState = loadFromLocalStorage<ILoginState>(LOGIN_STATE_TOKEN, { ...initialState });
 

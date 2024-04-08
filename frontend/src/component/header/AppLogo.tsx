@@ -7,19 +7,20 @@ const Root = styled(Box)(({ theme }) => ({
   // Appbar changes height based on screen width and this should adapt
   [theme.breakpoints.down('sm')]: {
     height: 46,
+    width: 52,
   },
   [theme.breakpoints.up('sm')]: {
     height: 52,
+    width: 52,
   },
-  paddingRight: theme.spacing(2),
+  backgroundImage: `url(${Logo})`,
 }));
 
+/**
+ * Just some Logo for f.e. Navbar
+ */
 export default function AppLogo() {
   return (
-    <Root
-      component="img"
-      // @ts-ignore This is correct
-      src={Logo}
-    />
+    <Root />
   );
 }

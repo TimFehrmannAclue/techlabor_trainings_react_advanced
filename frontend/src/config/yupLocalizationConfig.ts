@@ -5,14 +5,15 @@ import * as yup from 'yup';
 // Error messages are shortened as they are always displayed next to the form element or table cell and thus display a label
 yup.setLocale({
   mixed: {
-    default: 'ungültig', // '${path} ungültig',
-    required: 'benötigt', // '${path} benötigt',
+    default: 'ungültig',
+    required: 'benötigt',
     oneOf: 'benötigt: ${values}',
     notOneOf: 'ungültig: ${values}',
   },
+  // Validation of text input
   string: {
     length: 'benötigt Länge: ${length}',
-    min: 'zu kurz', // 'benötigt Länge >= ${min}',
+    min: 'zu kurz',
     max: 'benötigt Länge <= ${max}',
     matches: 'benötigt Format: ${regex}',
     email: '${path} ungültig',
@@ -21,17 +22,19 @@ yup.setLocale({
     lowercase: 'benötigt Kleinschreibung',
     uppercase: 'benötigt Großschreibung',
   },
+  // Validation of text input that is checked for number formats
   number: {
     min: 'benötigt >= ${min}',
     max: 'benötigt <= ${max}',
     lessThan: 'benötigt < ${less}',
     moreThan: 'benötigt > ${more}',
-    // @ts-ignore
+    // @ts-ignore Eslint does not like yup config
     notEqual: 'benötigt ${path} ander als "${notEqual}"',
     positive: 'benötigt >= 0',
     negative: 'benötigt < 0',
     integer: 'benötigt ganze Zahl',
   },
+  // Validation of text input that is checked for date formats or DatePicker input
   date: {
     min: 'benötigt: nach ${min}',
     max: 'benötigt: vor ${max}',

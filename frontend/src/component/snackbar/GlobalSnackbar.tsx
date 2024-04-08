@@ -42,16 +42,16 @@ export default function GlobalSnackbar() {
     >
       <Box flexDirection="column" gap={1} display="flex">
         {
-                    currentAlert ? (
-                      <Alert
-                        key={currentAlert.text}
-                        onClose={handleClose}
-                        severity={currentAlert.severity}
-                      >
-                        {currentAlert.text}
-                      </Alert>
-                    ) : null
-                }
+          currentAlert ? (
+            <Alert
+              key={currentAlert.text}
+              onClose={handleClose}
+              severity={currentAlert.severity}
+            >
+              {currentAlert.text}
+            </Alert>
+          ) : null
+        }
       </Box>
     </Snackbar>
   );

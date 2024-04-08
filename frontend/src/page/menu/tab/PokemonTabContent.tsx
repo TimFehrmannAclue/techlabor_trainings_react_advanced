@@ -34,47 +34,55 @@ const ButtonBox = styled(Box)(({ theme }) => ({
 }));
 
 export default function PokemonTabContent(): ReactElement {
-  console.info('PokemonTabContent - render all');
-
   // Query
   const {
     data: getPokemonData,
     isLoading: getPokemonIsLoading,
   } = useGetPokemonQuery();
+
   // Mutation
   const [postPokemonData, { isLoading: postPokemonDataIsLoading }] = usePostPokemonMutation();
   const pokemons = getPokemonData ?? [];
+
+  // Display loading when waiting for backend request
   const isLoading = getPokemonIsLoading || postPokemonDataIsLoading;
 
+  // useRef is like useState but does not trigger a rerender
+  // Re-rendering on every change would be very costly due to all those pokemon
+  // This is possible due to every TextField handling its own state.
   const editedPokemonsMap = useRef<Record<number, IPokemon>>({});
+  // There is no way to reset the TextFields with re-rendering due to useMemo caching
+  // so all TextFields pass back a function reference to a reset the internal state of the TextField
   const resetMap = useRef<Record<number, { reset:() => void }>>({});
 
+  // We want to rerender once the first change occurred to f.e. enable buttons submit, reset
   const [hasEditedPokemons, setHasEditedPokemons] = useState(false);
 
+  // Reset hasEdited when new pokemons were fetched
   useEffect(() => {
     setHasEditedPokemons(false);
   }, [pokemons]);
 
   const editPokemonName = (id: number, name: string) => {
-    editedPokemonsMap.current[id] = {
-      id,
-      name,
-    };
+    editedPokemonsMap.current[id] = { id, name };
     setHasEditedPokemons(true);
   };
 
   const handleSubmit = () => {
+    // Submitting all pokemon. Use changed pokemon in favor of unchanged.
     const updatedPokemonData: IPokemon[] = pokemons.map((pokemon) => editedPokemonsMap.current[pokemon.id] ?? pokemon);
     postPokemonData({ body: updatedPokemonData });
   };
 
   const handleReset = () => {
+    // Reset the internal state of every TextField
     Object.values(editedPokemonsMap.current)
       .forEach(({ id }) => resetMap.current[id].reset());
     editedPokemonsMap.current = {};
     setHasEditedPokemons(false);
   };
 
+  // UseMemo allows for caching based on dependencies like f.e. pokemon
   const cachedPokemonItems = useMemo(
     () => {
       console.info('PokemonTabContent - render useMemo - pokemonCount: ', pokemons.length);

@@ -14,6 +14,8 @@ import ROUTE_CONFIGS from './config/routeConfig';
 import createDefaultTheme from './theme/createAppTheme';
 
 export default function App(): ReactElement {
+  // Default stylings & colors of mui components
+  // https://mui.com/material-ui/customization/theming/
   const theme = createDefaultTheme();
 
   return (
