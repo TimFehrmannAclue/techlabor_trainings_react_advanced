@@ -15,11 +15,11 @@
     - ToDo 2.3: LoginRoute Redirect based on LoginData (React-Router, Login-Guards)
   Pause & Essen bestellen (10m)
   4. Special React Hooks (Todo useCallback?) (20m + 40m, Tim?)
-     - ToDo 2.1 useMemo
-     - ToDo 2.2 useRef
-     - ToDo 2.3 Fix Disabled / Force Rerendering
-     - ToDo 2.4 Add Reset
-     - ToDo 2.5 Tag Invalidation
+     - ToDo 3.1 useMemo
+     - ToDo 3.2 useRef
+     - ToDo 3.3 Fix Disabled / Force Rerendering
+     - ToDo 3.4 Add Reset
+     - ToDo 3.5 Tag Invalidation
      - nested state & pitfalls example?
   5. Ausblick (Signals, etc.) (20-30m)
   6. (Optional) error boundaries -> error page
