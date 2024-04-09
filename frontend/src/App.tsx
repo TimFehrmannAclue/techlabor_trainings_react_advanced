@@ -12,6 +12,7 @@ import ProtectedRoute from './component/route/ProtectedRoute';
 import MenuPage from './page/menu/MenuPage';
 import ROUTE_CONFIGS from './config/routeConfig';
 import createDefaultTheme from './theme/createAppTheme';
+import NotFoundPage from './page/notFound/NotFoundPage';
 
 export default function App(): ReactElement {
   // Default stylings & colors of mui components
@@ -40,6 +41,8 @@ export default function App(): ReactElement {
               path={ROUTE_CONFIGS.MENU.route}
               element={(<ProtectedRoute><MenuPage /></ProtectedRoute>)}
             />
+            {/* Redirect all unknown routes to the index page */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </Provider>
