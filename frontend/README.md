@@ -13,8 +13,9 @@
   4. Special React Hooks (Todo useCallback?) (20m + 40m, Tim?)
      - ToDo 2.1 UseMemo
      - ToDo 2.2 UseRef
-     - ToDo 2.3 Fix Disabled
-     - ToDo 2.4 Tag Invalidation
+     - ToDo 2.3 useImperativeHandle
+     - ToDo 2.4 Fix Disabled
+     - ToDo 2.5 Tag Invalidation
   5. Ausblick (Signals, etc.) (20-30m)
   6. (Optional) error boundaries -> error page
   7. (Optional) Middleware Error Handling
