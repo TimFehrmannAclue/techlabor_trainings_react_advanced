@@ -5,7 +5,7 @@ import {
   Box, Button, List, ListItem, Stack, styled,
 } from '@mui/material';
 
-import { IPokemon, useGetPokemonQuery, usePostPokemonMutation } from '../../../state/api/backend/raw/rawApi';
+import { IPokemon, useGetPokemonQuery, usePostPokemonMutation } from '../../../state/api/pokemon/rawApi';
 import EditableTextField from '../EditableTextField';
 import ResponsiveLoadingBackdrop from '../../../component/backdrop/ResponsiveLoadingBackdrop';
 
@@ -47,24 +47,28 @@ export default function PokemonTabContent(): ReactElement {
   // Display loading when waiting for backend request
   const isLoading = getPokemonIsLoading || postPokemonDataIsLoading;
 
+  // ToDo 2.2 useRef
   // useRef is like useState but does not trigger a rerender
   // Re-rendering on every change would be very costly due to all those pokemon
   // This is possible due to every TextField handling its own state.
   const editedPokemonsMap = useRef<Record<number, IPokemon>>({});
-  // There is no way to reset the TextFields with re-rendering due to useMemo caching
-  // so all TextFields pass back a function reference to a reset the internal state of the TextField
-  const resetMap = useRef<Record<number, { reset:() => void }>>({});
 
+  // ToDo 2.3 Enable Buttons / Force Rerendering
   // We want to rerender once the first change occurred to f.e. enable buttons submit, reset
   const [hasEditedPokemons, setHasEditedPokemons] = useState(false);
 
-  // Reset hasEdited when new pokemons were fetched
+  // ToDo 2.4 Add Reset
+  // There is no way to reset the TextFields with re-rendering due to useMemo caching
+  // so all TextFields pass back a function reference to a reset the internal state of the TextField
+  const resetMap = useRef<Record<number, () => void>>({});
+
+  // Reset hasEdited when new pokemon were fetched
   useEffect(() => {
     setHasEditedPokemons(false);
   }, [pokemons]);
 
-  const editPokemonName = (id: number, name: string) => {
-    editedPokemonsMap.current[id] = { id, name };
+  const handleUpdatePokemon = (pokemon: IPokemon) => {
+    editedPokemonsMap.current[pokemon.id] = pokemon;
     setHasEditedPokemons(true);
   };
 
@@ -77,11 +81,12 @@ export default function PokemonTabContent(): ReactElement {
   const handleReset = () => {
     // Reset the internal state of every TextField
     Object.values(editedPokemonsMap.current)
-      .forEach(({ id }) => resetMap.current[id].reset());
+      .forEach(({ id }) => resetMap.current[id]());
     editedPokemonsMap.current = {};
     setHasEditedPokemons(false);
   };
 
+  // ToDo 2.1 useMemo
   // UseMemo allows for caching based on dependencies like f.e. pokemon
   const cachedPokemonItems = useMemo(
     () => {
@@ -90,9 +95,9 @@ export default function PokemonTabContent(): ReactElement {
         <ListItem id="PokemonListItem" key={pokemon.id}>
           <EditableTextField
             defaultValue={editedPokemonsMap.current[pokemon.id]?.name || pokemon.name}
-            onChange={(value) => editPokemonName(pokemon.id, value)}
-            ref={(el: { reset: () => void }) => {
-              resetMap.current[pokemon.id] = el;
+            onChange={(name) => handleUpdatePokemon({ id: pokemon.id, name })}
+            registerReset={(reset) => {
+              resetMap.current[pokemon.id] = reset;
             }}
           />
         </ListItem>

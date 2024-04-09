@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import loadFromLocalStorage from '../../util/localStorage/json/loadFromLocalStorage';
 import saveToLocalStorage from '../../util/localStorage/json/saveToLocalStorage';
 import removeFromLocalStorage from '../../util/localStorage/json/removeFromLocalStorage';
-import { IUser } from '../api/backend/raw/rawApi';
+import { IUser } from '../api/pokemon/rawApi';
 
 interface ILoginState extends IUser {
   isLoggedIn: boolean;

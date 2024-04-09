@@ -1,6 +1,6 @@
 import { styled, TextField } from '@mui/material';
 import {
-  ChangeEvent, ForwardedRef, forwardRef, ReactElement, useImperativeHandle, useState,
+  ChangeEvent, ForwardedRef, forwardRef, ReactElement, useEffect, useImperativeHandle, useState,
 } from 'react';
 
 const StyledTextField = styled(TextField)(() => ({
@@ -13,24 +13,28 @@ const StyledTextField = styled(TextField)(() => ({
 interface IProps {
   defaultValue: string;
   onChange: (value: string) => void;
+  registerReset: (reset: () => void) => void;
 }
 
-function EditableTextField({ defaultValue, onChange }: IProps, ref: ForwardedRef<any>): ReactElement {
+function EditableTextField({ defaultValue, onChange, registerReset }: IProps): ReactElement {
   const [value, setValue] = useState(defaultValue);
 
-  // useImperativeHandle allows child components to pass references to parent components.
-  // This allows the parent component to reset the child component.
-  useImperativeHandle(ref, () => ({
-    reset() {
-      setValue(defaultValue);
-    },
-  }));
-
+  // Update Text
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
     onChange(newValue);
   };
+
+  // Undo Changes
+  const handleReset = () => {
+    setValue(defaultValue);
+  }
+
+  // Allow parent component to reset this without Rerendering
+  useEffect(() => {
+    registerReset(handleReset);
+  }, [registerReset]);
 
   return (
     <StyledTextField
@@ -41,4 +45,4 @@ function EditableTextField({ defaultValue, onChange }: IProps, ref: ForwardedRef
   );
 }
 
-export default forwardRef(EditableTextField);
+export default EditableTextField;
