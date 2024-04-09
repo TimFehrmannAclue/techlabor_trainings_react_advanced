@@ -1,4 +1,4 @@
-import { emptyApi as api } from '../empty/emptyApi';
+import { emptyPokemonApi as api } from './emptyPokemonApi';
 
 const injectedRtkApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -25,7 +25,7 @@ const injectedRtkApi = api.injectEndpoints({
   }),
   overrideExisting: false,
 });
-export { injectedRtkApi as rawApi };
+export { injectedRtkApi as pokemonApi };
 export type PostDummyApiResponse = unknown;
 export type PostDummyApiArg = void;
 export type GetPokemonApiResponse =

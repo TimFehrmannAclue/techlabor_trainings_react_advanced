@@ -5,8 +5,9 @@
     "start": "vite",
     "build": "vite build",
     "startFromBuild": "cd ./dist && http-server",
-    "codegen": "npx @rtk-query/codegen-openapi src/state/api/backend/openapi-config.ts && yarn codegenCleanup",
-    "codegenCleanup": "eslint src/state/api/backend/raw/rawApi.ts --fix"
+    "ToDo 1.1": "Run command below",
+    "codegen": "npx @rtk-query/codegen-openapi src/state/api/pokemon/openapi-config.ts && yarn codegenCleanup",
+    "codegenCleanup": "eslint src/state/api/pokemon/pokemonApi.ts --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

@@ -1,4 +1,4 @@
-import { rawApi } from '../raw/rawApi';
+import { pokemonApi } from './pokemonApi';
 
 /**
  *  Adds automatic invalidation for outdated Queries to the Api.
@@ -22,18 +22,21 @@ import { rawApi } from '../raw/rawApi';
  *
  *  Source: https://redux-toolkit.js.org/rtk-query/api/created-api/code-splitting#enhanceendpoints
  */
-const enhancedApi = rawApi.enhanceEndpoints({
+const enhancedPokemonApi = pokemonApi.enhanceEndpoints({
+  // ToDo 2.5 Add Pokemon tag
   addTagTypes: [
     'Pokemon',
   ],
   endpoints: {
+    // ToDo 2.5 getPokemon Query shall provide Pokemon tag
     getPokemon: {
       providesTags: ['Pokemon'],
     },
+    // ToDo 2.5 postPokemon Mutation shall invalidate Pokemon tag
     postPokemon: {
       invalidatesTags: ['Pokemon'],
     },
   },
 });
 
-export default enhancedApi;
+export default enhancedPokemonApi;

@@ -6,12 +6,12 @@ import { REMOTE_SWAGGER_JSON_URL } from '../../../config/config';
 // https://redux-toolkit.js.org/rtk-query/usage/code-generation
 const config: ConfigFile = {
   schemaFile: REMOTE_SWAGGER_JSON_URL,
-  // This path is relative to this config and being used to import the emptyApi.ts in the generated rawApi.ts
-  apiFile: './empty/emptyApi.ts',
-  apiImport: 'emptyApi',
-  // This path is relative to this config and being used to save the generated rawApi.ts
-  outputFile: './raw/rawApi.ts',
-  exportName: 'rawApi',
+  // This path is relative to this config and being used to import the emptyPokemonApi.ts in the generated pokemonApi.ts
+  apiFile: './emptyPokemonApi.ts',
+  apiImport: 'emptyPokemonApi',
+  // This path is relative to this config and being used to save the generated pokemonApi.ts
+  outputFile: './pokemonApi.ts',
+  exportName: 'pokemonApi',
   hooks: {
     queries: true,
     lazyQueries: true,
