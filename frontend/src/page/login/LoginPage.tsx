@@ -12,8 +12,6 @@ import SimpleBackground from '../../component/image/SimpleBackground';
 import backgroundImage from '../../image/app_background_image_hd_upscaled.jpg';
 import FormTextField from '../../component/form/FormTextField';
 import { usePostLoginMutation } from '../../state/api/pokemon/pokemonApi';
-import IRtkError from '../../../type/rtk/IRtkError';
-import { setSnackbar } from '../../state/slice/snackbarSlice';
 import { setLoggedIn } from '../../state/slice/loginSlice';
 import yup from '../../config/yupLocalizationConfig';
 import ResponsiveLoadingBackdrop from '../../component/backdrop/ResponsiveLoadingBackdrop';
@@ -65,19 +63,7 @@ export default function LoginPage() {
 
   // Handle login Response
   useEffect(() => {
-    // Display error
-    if (loginError) {
-      console.error('LoginForm - loginError: ', loginError);
-      // todo set type in rtk query
-      const error = loginError as IRtkError;
-      dispatch(setSnackbar({
-        text: error.data.message,
-        severity: 'error',
-      }));
-    }
-
-    // No Response
-    if (loginIsLoading || !loginData) {
+    if (loginError || loginIsLoading || !loginData) {
       return;
     }
 

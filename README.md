@@ -39,33 +39,27 @@
   - Code & Bilder im Powerpoint
 
 ## ToDo (unsorted)
-- documentation
-  - add links in readme & code to useful documentation
-  - code todos
-    - split up into branches
-  - diagram
-    - Slice sequence diagram (f.e. Snackbar)
-    - pitfalls with nested objects in useState due to direct references to memory?
-- optimization
-  - analyze build size & package sizes
-  - set rtk error type for login in backend annotation
-- presentation
-  - explain project structure
-  - entry slide: what makes someone advanced in react?
-    - less boilerplate, less nesting, performance comes last
-  - decide for german or english
-  - Fragen für Teilnehmer einbauen
-  - add file names to snippets & sources to links/images
-- test
+### documentation
+- add links in readme & code to useful documentation
+- code todos
+- split up into branches
+- diagram
+  - pitfalls with nested objects in useState due to direct references to memory?
+### presentation
+- entry slide: what makes someone advanced in react?
+- less boilerplate, less nesting, performance comes last
+- translate english to german
+- add file names to snippets & sources to links/images
+- Fragen für Teilnehmer einbauen
+- add parts of affinity designer for ui concepts steps to presentation
+- explain project structure
+### test
   - test on someone elses pc, also note whether nodejs version must be installed manually (f.e. Matthäus, Sandria)
-- feedback
+### feedback
   - show to Johannes
 ### Optional
-- use cache when changing back to pokemon tab to reduce load time
 - move snackbar into branch
-- localize response tokens / does backend/error stuff work?
-- add parts of affinity designer for ui concepts steps to presentation
-- extend IProps to reduce redundancy
+- analyze build size & package sizes
 
 ## Preparation before Workshop
 - have look at last training
