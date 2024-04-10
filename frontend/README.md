@@ -31,7 +31,7 @@ State management for data received from the backend using redux-toolkit-query
 - emptyPokemonApi.ts: The rtk web-client generated from swagger.json will be injected into this api boilerplate.
 - enhancedPokemonApi.ts: Manually edit generated rtk endpoints & query cache invalidation using tags.
 - pokemonApi.ts: Rtk web-client & types generated from swagger.json.
-- openapi-config.ts: Config for redux-toolkit-query-codegen to generate rawApi.ts.
+- openapi-config.ts: Config for redux-toolkit-query-codegen to generate pokemonApi.ts.
 ##### error
 Error handling for redux-toolkit-query. 
 #### slice

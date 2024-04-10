@@ -11,20 +11,26 @@ import ResponsiveLoadingBackdrop from '../../../component/backdrop/ResponsiveLoa
 
 const StyledStack = styled(Stack)(() => ({
   position: 'relative',
-  width: 'auto',
+  display: 'flex',
+  height: '100%',
+  overflow: 'auto',
   alignSelf: 'center',
   gap: 2,
+  width: 'inherit',
+  maxWidth: 'inherit',
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  flex: 1,
   display: 'flex',
   justifyContent: 'center',
   overflowY: 'auto',
   borderRadius: theme.shape.borderRadius,
   boxShadow: 'inset 0px 3px 3px -2px rgba(0,0,0,0.2), inset 0px 3px 4px 0px rgba(0,0,0,0.14), inset 0px 1px 8px 0px rgba(0,0,0,0.12)',
-  height: 600,
-  width: 300,
-  paddingTop: theme.spacing(2),
+  maxHeight: 'inherit',
+  width: 'inherit',
+  maxWidth: 'inherit',
 }));
 
 const ButtonBox = styled(Box)(({ theme }) => ({
@@ -40,6 +46,7 @@ export default function PokemonTabContent(): ReactElement {
     isLoading: getPokemonIsLoading,
   } = useGetPokemonQuery();
 
+  console.info('rendered')
   // Mutation
   const [postPokemonData, { isLoading: postPokemonDataIsLoading }] = usePostPokemonMutation();
   const pokemons = getPokemonData ?? [];
@@ -113,9 +120,9 @@ export default function PokemonTabContent(): ReactElement {
 
   return (
     <StyledStack id="PokemonTabContent">
-      {isLoading ? <ResponsiveLoadingBackdrop /> : null}
       <StyledBox id="PokemonListBox">
-        <List id="PokemonList" dense>
+        {isLoading ? <ResponsiveLoadingBackdrop /> : null}
+        <List id="PokemonList" dense sx={{ width: '100%' }}>
           {cachedPokemonItems}
         </List>
       </StyledBox>

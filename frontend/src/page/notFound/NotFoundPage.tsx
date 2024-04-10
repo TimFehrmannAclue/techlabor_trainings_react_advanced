@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { Grid } from '@mui/material';
 
 import Page from '../../component/page/Page';
 import notFoundGif from '../../image/notFound.gif';
@@ -9,12 +8,8 @@ import notFoundGif from '../../image/notFound.gif';
  */
 export default function NotFoundPage(): ReactElement {
   return (
-    <Page headerText="404 - Page not found">
-      <Grid container spacing={2} justifyContent="center" height="100%">
-        <Grid item xs={10}>
-          <img src={notFoundGif} alt="Not Found" />
-        </Grid>
-      </Grid>
+    <Page>
+      <img src={notFoundGif} alt="Not Found" style={{ maxHeight: '100%', width: 'fit-content', alignSelf: 'center' }} />
     </Page>
   );
 }

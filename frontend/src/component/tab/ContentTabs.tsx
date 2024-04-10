@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import {
+  Box,
   Stack, styled, Tab, Tabs,
 } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
@@ -7,14 +8,25 @@ import { useSearchParams } from 'react-router-dom';
 import { SEARCH_PARAM_TAB } from '../../config/routeConfig';
 import IContentTab from '../../../type/component/tab/IContentTab';
 
-const TabStack = styled(Stack)(({ theme }) => ({
+const StyledBox = styled(Box)(() => ({
+  width: 'inherit',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+}));
+
+const HeaderTabStack = styled(Stack)(() => ({
+  width: 'inherit',
   borderColor: 'transparent',
   marginRight: 'auto',
-  paddingLeft: theme.spacing(2),
+  flex: '0 0 auto', // Let it grow as needed without taking remaining space
 }));
 
 const ContentStack = styled(Stack)(() => ({
-
+  maxHeight: 'inherit',
+  flex: '1', // Take the remaining available space
+  overflowY: 'auto', // Allow content to scroll if it exceeds available height
+  width: 'inherit',
 }));
 
 // The Tabs component use indices to handle tab changes but url uses text-tokens to be more descriptive
@@ -53,8 +65,9 @@ export default function ContentTabs({ contentTabs }: IProps): ReactElement {
   };
 
   return (
-    <>
-      <TabStack id="ContentTabsHeaderStack">
+    <StyledBox id="ContentTabs">
+
+      <HeaderTabStack id="ContentTabsHeaderStack">
         <Tabs
           id="HeaderTabsContainer"
           value={activeContentTabIndex}
@@ -68,13 +81,13 @@ export default function ContentTabs({ contentTabs }: IProps): ReactElement {
             />
           ))}
         </Tabs>
-      </TabStack>
+      </HeaderTabStack>
 
       <ContentStack
         id="ContentTabsContentStack"
       >
         {activeContentTab.content}
       </ContentStack>
-    </>
+    </StyledBox>
   );
 }

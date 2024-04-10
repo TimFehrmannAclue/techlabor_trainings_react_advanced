@@ -54,7 +54,7 @@ const TextFieldStack = styled(Stack)(({ theme }) => ({
 export default function LoginPage() {
   const dispatch = useDispatch();
 
-  // ToDo 1.2 Import and use Login Mutation from generated rawApi
+  // ToDo 1.2 Import and use Login Mutation from generated pokemonApi
   const [login, {
     data: loginData,
     isLoading: loginIsLoading,
@@ -67,7 +67,7 @@ export default function LoginPage() {
       return;
     }
 
-    console.info(loginData.jwt);
+    console.info('LoginPage - received jwt: ', loginData.jwt);
     // No need to navigate as LoginRoute automatically redirects
     dispatch(setLoggedIn(loginData.jwt));
   }, [loginData, loginIsLoading, loginError]);

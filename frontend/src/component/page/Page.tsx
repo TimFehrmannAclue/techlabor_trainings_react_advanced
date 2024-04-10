@@ -1,37 +1,39 @@
 import React, { ReactNode } from 'react';
-import { styled, SxProps, Typography } from '@mui/material';
+import { Box, styled, SxProps } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
-import PageBody from '../body/PageBody';
+import ROUTE_CONFIGS from '../../config/routeConfig';
+import removeTransientProps from '../../util/react/removeTransientProps';
 
-const HeaderTypography = styled(Typography)(({ theme }) => ({
-  fontWeight: 'bold',
-  marginBottom: theme.spacing(-0.75),
-  paddingBottom: theme.spacing(2),
+const StyledBox = styled(Box, removeTransientProps)<{ $isLoginPage: boolean }>(({ $isLoginPage, theme }) => ({
+  width: '100%',
+  // LoginPage is only Page without a Navbar
+  height: $isLoginPage ? '100%' : 'calc(100% - 64px)',
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: theme.spacing(2),
+  overflow: 'hidden',
 }));
 
 interface IProps {
-  children: ReactNode;
-  headerText?: string;
-  sx?: SxProps;
+    children: ReactNode;
+    sx?: SxProps;
 }
 
 /**
- * Everything below the Appbar is in this Page component
- * It provides a loading overlay & an optional headerText
+ * Contains the content elements (children) of Page component
  */
-export default function Page(props: IProps) {
-  const {
-    children,
-    headerText,
-    sx,
-  } = props;
+export default function Page({ children, sx }: IProps) {
+  const isLoginPage = useLocation().pathname === ROUTE_CONFIGS.INDEX.route;
 
   return (
-    <PageBody sx={sx}>
-      {headerText
-        ? <HeaderTypography variant="h4">{headerText}</HeaderTypography>
-        : null}
+    <StyledBox
+      id="Page"
+      $isLoginPage={isLoginPage}
+      sx={sx}
+    >
       {children}
-    </PageBody>
+    </StyledBox>
   );
 }

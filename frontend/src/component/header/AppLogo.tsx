@@ -3,7 +3,7 @@ import { Box, styled } from '@mui/material';
 
 import Logo from '../../image/app_logo.svg';
 
-const Root = styled(Box)(({ theme }) => ({
+const StyledLogo = styled(Box)(({ theme }) => ({
   // Appbar changes height based on screen width and this should adapt
   [theme.breakpoints.down('sm')]: {
     height: 46,
@@ -14,6 +14,7 @@ const Root = styled(Box)(({ theme }) => ({
     width: 52,
   },
   backgroundImage: `url(${Logo})`,
+  backgroundRepeat: 'no-repeat',
 }));
 
 /**
@@ -21,6 +22,6 @@ const Root = styled(Box)(({ theme }) => ({
  */
 export default function AppLogo() {
   return (
-    <Root />
+    <StyledLogo />
   );
 }

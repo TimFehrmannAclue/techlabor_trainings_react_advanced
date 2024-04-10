@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import loadFromLocalStorage from '../../util/localStorage/json/loadFromLocalStorage';
 import saveToLocalStorage from '../../util/localStorage/json/saveToLocalStorage';
 import removeFromLocalStorage from '../../util/localStorage/json/removeFromLocalStorage';
-import { IUser } from '../api/pokemon/rawApi';
+import { IUser } from '../api/pokemon/pokemonApi';
 
 interface ILoginState extends IUser {
   isLoggedIn: boolean;
@@ -13,9 +13,9 @@ interface ILoginState extends IUser {
 
 const initialState: ILoginState = {
   isLoggedIn: false,
+  token: '',
   name: '',
   email: '',
-  token: '',
 };
 
 // Storing login data in localStorage to be persistent across page refresh

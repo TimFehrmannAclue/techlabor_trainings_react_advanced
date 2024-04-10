@@ -20,7 +20,7 @@ const ROUTE_CONFIGS: Record<IRoute, IRouteConfig> = {
   // Account page is displayed when clicking on the Account Tab on Menu Page
   ACCOUNT: {
     name: 'Account',
-    route: `Menu?${SEARCH_PARAM_TAB}=Account`,
+    route: `/menu?${SEARCH_PARAM_TAB}=Account`,
     requiresAuthentication: true,
   },
 };

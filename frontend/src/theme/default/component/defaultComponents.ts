@@ -82,7 +82,27 @@ const defaultComponents = (theme: Theme) => ({
           },
         },
       },
+      {
+        props: { variant: 'standard' },
+        style: {
+          width: 'inherit',
+          borderRadius: 0,
+          '&& .MuiInputBase-input': {
+            boxShadow: 'none',
+          },
+        },
+      },
     ],
+  },
+  MuiTabs: {
+    styleOverrides: {
+      root: {
+        alignSelf: 'center',
+      },
+      indicator: {
+        display: 'none',
+      },
+    },
   },
 });
 

@@ -1,14 +1,7 @@
-import { styled, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import {
-  ChangeEvent, ForwardedRef, forwardRef, ReactElement, useEffect, useImperativeHandle, useState,
+  ChangeEvent, ReactElement, useEffect, useState,
 } from 'react';
-
-const StyledTextField = styled(TextField)(() => ({
-  borderRadius: 0,
-  '&& .MuiInputBase-input': {
-    boxShadow: 'none',
-  },
-}));
 
 interface IProps {
   defaultValue: string;
@@ -19,6 +12,7 @@ interface IProps {
 function EditableTextField({ defaultValue, onChange, registerReset }: IProps): ReactElement {
   const [value, setValue] = useState(defaultValue);
 
+  console.info('rerender EditableTextField')
   // Update Text
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -29,7 +23,7 @@ function EditableTextField({ defaultValue, onChange, registerReset }: IProps): R
   // Undo Changes
   const handleReset = () => {
     setValue(defaultValue);
-  }
+  };
 
   // Allow parent component to reset this without Rerendering
   useEffect(() => {
@@ -37,7 +31,7 @@ function EditableTextField({ defaultValue, onChange, registerReset }: IProps): R
   }, [registerReset]);
 
   return (
-    <StyledTextField
+    <TextField
       variant="standard"
       value={value}
       onChange={handleChange}
