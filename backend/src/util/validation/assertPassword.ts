@@ -1,5 +1,5 @@
-import {RESPONSE_TOKEN} from "../../../endpoint/localization/ResponseToken";
-import hash from "../../encryption/hash";
+import {RESPONSE_TOKEN} from "../../endpoint/localization/ResponseToken";
+import hash from "../encryption/hash";
 
 export default function assertPassword(password: string, storedPasswordHash: string): void | never {
     const passwordHash = hash(password);

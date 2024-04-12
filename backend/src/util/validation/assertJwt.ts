@@ -1,6 +1,6 @@
-import {RESPONSE_TOKEN} from "../../../endpoint/localization/ResponseToken";
+import {RESPONSE_TOKEN} from "../../endpoint/localization/ResponseToken";
 import jwt from "jsonwebtoken";
-import {SALT} from "../../../config";
+import {SALT} from "../../config";
 
 export function assertJwt(token: string | undefined): void | never {
     if (!token || token === '') {

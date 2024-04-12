@@ -1,7 +1,7 @@
 import {Express} from "express";
-import getUserJwtToken from "../../service/user/UserService";
+import getUserJwtToken from "../service/UserService";
 
-export default function setupUserEndpoints(app: Express): void {
+export default function addUserEndpoints(app: Express): void {
 
     /**
      @openapi

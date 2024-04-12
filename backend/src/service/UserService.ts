@@ -1,7 +1,7 @@
-import getAssertedUserByEmail from "../../repository/user/UserRepository";
-import {JWT_ALGORITHM, JWT_EXPIRES_IN, JWT_SECRET} from "../../config";
+import getAssertedUserByEmail from "../repository/UserRepository";
+import {JWT_ALGORITHM, JWT_EXPIRES_IN, JWT_SECRET} from "../config";
 import jwt from 'jsonwebtoken';
-import assertPassword from "../../util/validation/assert/assertPassword";
+import assertPassword from "../util/validation/assertPassword";
 
 export default function getUserJwt(email: string, password: string): string | never {
     const user = getAssertedUserByEmail(email);

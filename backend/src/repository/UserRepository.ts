@@ -1,6 +1,6 @@
-import assertUser from "../../util/validation/assert/assertUser";
-import hash from "../../util/encryption/hash";
-import IUserDb from "../../../type/backend/user/IUserDb";
+import assertUser from "../util/validation/assertUser";
+import hash from "../util/encryption/hash";
+import IUserDb from "../../type/backend/user/IUserDb";
 
 const UserRepository: { Users: IUserDb[] } = {
     Users: [

@@ -1,11 +1,11 @@
 import {Express} from "express";
 import bodyParser from 'body-parser';
-import setupUserEndpoints from "./user/setupUserEndpoints";
-import setupPokemonEndpoints from "./pokemon/setupPokemonEndpoints";
+import addUserEndpoints from "./addUserEndpoints";
+import addPokemonEndpoints from "./addPokemonEndpoints";
 
 export default function setupEndpoints(app: Express): void {
     app.use(bodyParser.json());
 
-    setupUserEndpoints(app);
-    setupPokemonEndpoints(app);
+    addUserEndpoints(app);
+    addPokemonEndpoints(app);
 }

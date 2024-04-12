@@ -1,7 +1,7 @@
 import {Express} from "express";
-import {getPokemon, savePokemon} from "../../service/pokemon/PokemonService";
+import {getPokemon, savePokemon} from "../service/PokemonService";
 
-export default function setupPokemonEndpoints(app: Express): void {
+export default function addPokemonEndpoints(app: Express): void {
 
     /**
      * @openapi
