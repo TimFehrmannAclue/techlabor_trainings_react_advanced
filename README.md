@@ -39,7 +39,6 @@
   - Code & Bilder im Powerpoint
 
 ## ToDo (unsorted)
- fix loading between login & menu page
  display edited pokemon image for some color
  lag when editing a thousand pokemon even though only a single EditableTexTfield is due to:
   forced reflow react is likely performance bottleneck as the Browser checks for css adjustments of the whole list anyway even though react does not rerender them

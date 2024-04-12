@@ -4,10 +4,14 @@ import React, {
 import {
   Box, Button, List, ListItem, Stack, styled,
 } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
-import { IPokemon, useGetPokemonQuery, usePostPokemonMutation } from '../../../state/api/pokemon/pokemonApi';
+import {
+  IPokemon, pokemonApi, useGetPokemonQuery, usePostPokemonMutation,
+} from '../../../state/api/pokemon/pokemonApi';
 import EditableTextField from '../EditableTextField';
 import ResponsiveLoadingBackdrop from '../../../component/backdrop/ResponsiveLoadingBackdrop';
+import enhancedPokemonApi from '../../../state/api/pokemon/enhancedPokemonApi';
 
 const StyledStack = styled(Stack)(() => ({
   position: 'relative',
@@ -40,6 +44,7 @@ const ButtonBox = styled(Box)(({ theme }) => ({
 }));
 
 export default function PokemonTabContent(): ReactElement {
+  const dispatch = useDispatch();
   // Query
   const {
     data: getPokemonData,
@@ -72,6 +77,10 @@ export default function PokemonTabContent(): ReactElement {
   // Reset hasEdited when new pokemon were fetched
   useEffect(() => {
     setHasEditedPokemons(false);
+    return () => {
+      // Clear Cache on Logout as this might lead to confusing behaviour during training otherwise
+      dispatch(enhancedPokemonApi.util.invalidateTags(['Pokemon']));
+    };
   }, [pokemons]);
 
   const handleUpdatePokemon = (pokemon: IPokemon) => {
