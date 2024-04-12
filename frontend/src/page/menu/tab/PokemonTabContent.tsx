@@ -7,18 +7,20 @@ import {
 import { useDispatch } from 'react-redux';
 
 import {
-  IPokemon, pokemonApi, useGetPokemonQuery, usePostPokemonMutation,
+  IPokemon, useGetPokemonQuery, usePostPokemonMutation,
 } from '../../../state/api/pokemon/pokemonApi';
 import EditableTextField from '../EditableTextField';
 import ResponsiveLoadingBackdrop from '../../../component/backdrop/ResponsiveLoadingBackdrop';
 import enhancedPokemonApi from '../../../state/api/pokemon/enhancedPokemonApi';
+import { POKEMON_ARTWORK_BY_ID_URL } from '../../../config/config';
 
 const StyledStack = styled(Stack)(() => ({
   position: 'relative',
   display: 'flex',
   height: '100%',
   overflow: 'auto',
-  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   gap: 2,
   width: 'inherit',
   maxWidth: 'inherit',
@@ -39,19 +41,21 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const ButtonBox = styled(Box)(({ theme }) => ({
   display: 'flex',
+  width: 'inherit',
   justifyContent: 'space-between',
   paddingTop: theme.spacing(2),
 }));
 
 export default function PokemonTabContent(): ReactElement {
   const dispatch = useDispatch();
+  const [selectedPokemonId, setSelectedPokemonId] = useState<number>(1);
+
   // Query
   const {
     data: getPokemonData,
     isLoading: getPokemonIsLoading,
   } = useGetPokemonQuery();
 
-  console.info('rendered')
   // Mutation
   const [postPokemonData, { isLoading: postPokemonDataIsLoading }] = usePostPokemonMutation();
   const pokemons = getPokemonData ?? [];
@@ -82,6 +86,10 @@ export default function PokemonTabContent(): ReactElement {
       dispatch(enhancedPokemonApi.util.invalidateTags(['Pokemon']));
     };
   }, [pokemons]);
+
+  const handleSelectedPokemonId = (id: number) => {
+    setSelectedPokemonId(id);
+  }
 
   const handleUpdatePokemon = (pokemon: IPokemon) => {
     // ToDo 3.2.2 update the pokemon in the editedPokemonsMap
@@ -117,6 +125,7 @@ export default function PokemonTabContent(): ReactElement {
           <EditableTextField
             defaultValue={editedPokemonsMap.current[pokemon.id]?.name || pokemon.name}
             onChange={(name) => handleUpdatePokemon({ id: pokemon.id, name })}
+            onSelect={() => handleSelectedPokemonId(pokemon.id)}
             registerReset={(reset) => {
               resetMap.current[pokemon.id] = reset;
             }}
@@ -129,6 +138,7 @@ export default function PokemonTabContent(): ReactElement {
 
   return (
     <StyledStack id="PokemonTabContent">
+      <img style={{ width: 200, height: 200 }} src={`${POKEMON_ARTWORK_BY_ID_URL}${selectedPokemonId}.png`} alt="PokemonArtwork" />
       <StyledBox id="PokemonListBox">
         {isLoading ? <ResponsiveLoadingBackdrop /> : null}
         <List id="PokemonList" dense sx={{ width: '100%' }}>

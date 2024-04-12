@@ -2,7 +2,7 @@ import IPokemon from "../../../type/frontend/pokemon/IPokemon";
 import pokemonNames from "./PokemonNames";
 import PokemonNames from "./PokemonNames";
 
-const Pokemon = pokemonNames.map((name, id) => ({name, id}));
+const Pokemon = pokemonNames.map((name, index) => ({name, id: index + 1}));
 const PokemonRepository: { Pokemon: IPokemon[] } = {
     Pokemon,
 };

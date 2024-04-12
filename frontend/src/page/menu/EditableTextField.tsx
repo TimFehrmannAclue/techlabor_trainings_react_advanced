@@ -6,13 +6,15 @@ import {
 interface IProps {
   defaultValue: string;
   onChange: (value: string) => void;
+  onSelect: () => void;
   registerReset: (reset: () => void) => void;
 }
 
-function EditableTextField({ defaultValue, onChange, registerReset }: IProps): ReactElement {
+function EditableTextField({
+  defaultValue, onChange, onSelect, registerReset,
+}: IProps): ReactElement {
   const [value, setValue] = useState(defaultValue);
 
-  console.info('rerender EditableTextField')
   // Update Text
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -35,6 +37,7 @@ function EditableTextField({ defaultValue, onChange, registerReset }: IProps): R
       variant="standard"
       value={value}
       onChange={handleChange}
+      onSelect={onSelect}
     />
   );
 }
