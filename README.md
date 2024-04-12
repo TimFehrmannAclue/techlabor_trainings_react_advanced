@@ -37,9 +37,8 @@
   - Einen beauftragen auf Fragen im Chat hinzuweisen
   - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
   - Code & Bilder im Powerpoint
-
 ## ToDo (unsorted)
-- validate jwt in backend
+// todo use app.use(jwt({ secret: secret, algorithms: ['HS256'] }).unless({ path: ['/open-routes'] }));
 - lag when editing a thousand pokemon even though only a single EditableTexTfield is due to:
   forced reflow react is likely performance bottleneck as the Browser checks for css adjustments of the whole list anyway even though react does not rerender them
   -> mention virtualized lists

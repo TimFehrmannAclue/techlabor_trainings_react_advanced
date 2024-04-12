@@ -83,7 +83,9 @@ export default function PokemonTabContent(): ReactElement {
     setHasEditedPokemons(false);
     return () => {
       // Clear Cache on Logout as this might lead to confusing behaviour during training otherwise
-      dispatch(enhancedPokemonApi.util.invalidateTags(['Pokemon']));
+      if (pokemons && pokemons.length > 0) {
+        dispatch(enhancedPokemonApi.util.invalidateTags(['Pokemon']));
+      }
     };
   }, [pokemons]);
 

@@ -48,6 +48,7 @@ Used during runtime & part of build
 - bcrypt: Used for hashing & salting the user password.
 - cors: Cors blocks web requests based on origin and is required for node.js server.
 - express: The node.js server which accepts web requests via public endpoints.
+- express-jwt: Verifies & decrypts Jwt passed as Bearer Header.
 - jsonwebtoken: Used to create an authentication token for each user.
 - swagger-jsdoc: Creates an openapi 3.0 documentation from a config file & endpoints annotations.
 - swagger-ui-express: Provides a web endpoint to access the swagger.json.

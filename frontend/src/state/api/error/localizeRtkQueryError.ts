@@ -5,6 +5,7 @@ const errorLocalizationMap: Record<string, string> = {
   INVALID_EMAIL: 'Ungültige Email',
   INVALID_PASSWORD: 'Ungültiges Passwort',
   SERVER_ERROR: 'Server Fehler',
+  INVALID_JWT: 'Ungültiger Token',
 };
 
 export default function getRtkQueryErrorText(status: string, error: string, message: string | undefined): string {
