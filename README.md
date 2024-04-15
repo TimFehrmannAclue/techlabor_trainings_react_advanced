@@ -38,23 +38,19 @@
   - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
   - Code & Bilder im Powerpoint
 ## ToDo (unsorted)
-// todo use app.use(jwt({ secret: secret, algorithms: ['HS256'] }).unless({ path: ['/open-routes'] }));
-- lag when editing a thousand pokemon even though only a single EditableTexTfield is due to:
-  forced reflow react is likely performance bottleneck as the Browser checks for css adjustments of the whole list anyway even though react does not rerender them
-  -> mention virtualized lists
+
 ### documentation
 - add links in readme & code to useful documentation
 - code todos
 - split up into branches
 - diagram
   - pitfalls with nested objects in useState due to direct references to memory?
+- Beispiele aus Folien sollten nicht Lösungen sein
 ### presentation
-- entry slide: what makes someone advanced in react?
-- less boilerplate, less nesting, performance comes last
 - translate english to german
+- Zu den ToDos direkt die Code snippets mit den todos, auf die nächste folie dann die lösung
 - add file names to snippets & sources to links/images
 - Fragen für Teilnehmer einbauen
-- add parts of affinity designer for ui concepts steps to presentation
 - explain project structure
 ### test
   - test on someone elses pc, also note whether nodejs version must be installed manually (f.e. Matthäus, Sandria)
