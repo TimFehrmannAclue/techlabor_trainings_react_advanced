@@ -23,16 +23,16 @@ import { pokemonApi } from './pokemonApi';
  *  Source: https://redux-toolkit.js.org/rtk-query/api/created-api/code-splitting#enhanceendpoints
  */
 const enhancedPokemonApi = pokemonApi.enhanceEndpoints({
-  // ToDo 2.5 Add Pokemon tag
+  // ToDo 1.3.1 Add Pokemon tag
   addTagTypes: [
     'Pokemon',
   ],
   endpoints: {
-    // ToDo 2.5 getPokemon Query shall provide Pokemon tag
+    // ToDo 1.3.2 getPokemon Query shall provide Pokemon tag
     getPokemon: {
       providesTags: ['Pokemon'],
     },
-    // ToDo 2.5 postPokemon Mutation shall invalidate Pokemon tag
+    // ToDo 1.3.3 postPokemon Mutation shall invalidate Pokemon tag
     postPokemon: {
       invalidatesTags: ['Pokemon'],
     },
