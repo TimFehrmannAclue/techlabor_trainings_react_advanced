@@ -2,8 +2,8 @@
 - start backend (See backend README.md)
 - start frontend (See frontend README.md)
 
-# ToDo
-- React Features festlegen (Vorstellung, Training, Ausblick)
+# Presentation
+## Glossar
   1. Css-modules vs styled-components (15m, Leon?)
   2. Api-Generierung (10m + 15m, Tim?)
     - ToDo 1.1: Api Generation (Rtk-codegen & OpenApi.json)
@@ -24,43 +24,40 @@
   5. Ausblick (Signals, etc.) (20-30m)
   6. (Optional) error boundaries -> error page
   7. (Optional) Middleware Error Handling
+## Notes
+- Appoint someone to hint at questions in chat
+- Update time tTable & puffer Times
 
 # Training Responsive Webapp React-Mui-rtk
 ## Notes from talk with Johannes
-- api calls
-- error boundaries -> error page
 - routing concept
 - Zeitplan aufstellen und welche Zeiten als Puffer genommen werden können
 
 - Tipps
-  - Einer präsentiert -> kein presenter switch in teams
   - Einen beauftragen auf Fragen im Chat hinzuweisen
   - Mittagpause hintendran & vorab bestellen oder mittendrin Pause
   - Code & Bilder im Powerpoint
 ## ToDo (unsorted)
-
-### documentation
 - add links in readme & code to useful documentation
-- code todos
 - split up into branches
-- diagram
-  - pitfalls with nested objects in useState due to direct references to memory?
-- Beispiele aus Folien sollten nicht Lösungen sein
+- repo veröffentlichen
+
 ### presentation
-- translate english to german
 - Zu den ToDos direkt die Code snippets mit den todos, auf die nächste folie dann die lösung
+- Beispiele aus Folien sollten nicht Lösungen sein
 - add file names to snippets & sources to links/images
 - Fragen für Teilnehmer einbauen
-- explain project structure
+- explain project structure in code
+#### Optional
+- errormiddleware
+
 ### test
   - test on someone elses pc, also note whether nodejs version must be installed manually (f.e. Matthäus, Sandria)
 ### feedback
   - show to Johannes
-### Optional
-- move snackbar into branch
-- analyze build size & package sizes
 
 ## Preparation before Workshop for participants
+- use node 18.18.2
 - have look at last training
 - Clone git repo
 - IDE for Js/Ts (Webstorm, VsCode, etc.)
