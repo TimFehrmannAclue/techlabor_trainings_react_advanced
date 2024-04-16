@@ -9,7 +9,7 @@ import ITypeObject from "../../type/backend/swagger/ITypeObject";
 export default function generateTypeObjects(typeDir: string, tsConfigFile: string): ITypeObject[] {
     const filePaths = getAllFilePaths(typeDir);
     const tsconfigPath = path.resolve(tsConfigFile);
-    // ToDo There is probably a better solution for this
+    // Sadly there is no prettier way for this
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const tsconfig = require(tsconfigPath);
 
