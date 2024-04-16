@@ -27,6 +27,7 @@
   "rules": {
     "no-spaced-func": "off",
     "func-call-spacing": "off",
+    "linebreak-style": ["error", "unix"],
     "max-len": [
       "error",
       {
