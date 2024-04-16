@@ -1,12 +1,9 @@
-import React from 'react';
-import {
-  AppBar, styled, Toolbar, Typography,
-} from '@mui/material';
+import React, { useEffect } from 'react';
+import { AppBar, styled, Toolbar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { IRootState } from '../../state/store';
-import { IRouteConfig } from '../../../type/route/IRouteConfig';
 import ROUTE_CONFIGS from '../../config/routeConfig';
 
 import AppLogo from './AppLogo';

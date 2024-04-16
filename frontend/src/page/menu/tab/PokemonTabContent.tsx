@@ -6,9 +6,7 @@ import {
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
-import {
-  IPokemon, useGetPokemonQuery, usePostPokemonMutation,
-} from '../../../state/api/pokemon/pokemonApi';
+import { IPokemon, useGetPokemonQuery, usePostPokemonMutation } from '../../../state/api/pokemon/pokemonApi';
 import EditableTextField from '../EditableTextField';
 import ResponsiveLoadingBackdrop from '../../../component/backdrop/ResponsiveLoadingBackdrop';
 import enhancedPokemonApi from '../../../state/api/pokemon/enhancedPokemonApi';
@@ -91,7 +89,7 @@ export default function PokemonTabContent(): ReactElement {
 
   const handleSelectedPokemonId = (id: number) => {
     setSelectedPokemonId(id);
-  }
+  };
 
   const handleUpdatePokemon = (pokemon: IPokemon) => {
     // ToDo 3.2.2 update the pokemon in the editedPokemonsMap
@@ -137,6 +135,23 @@ export default function PokemonTabContent(): ReactElement {
     },
     [pokemons],
   );
+  const handleSomething = () => {}
+
+  // Not Triggered
+  pokemons.push({ id: 1, name: 'Bulbasaur' })
+  useEffect(handleSomething, [pokemons]);
+
+  // Triggered
+  pokemons.push({ id: 1, name: 'Bulbasaur' })
+  useEffect(handleSomething, [pokemons.length]);
+
+  // Not Triggered
+  pokemons[0].name = 'Ivysaur'
+  useEffect(handleSomething, [pokemons.length]);
+
+  // Triggered
+  pokemons = [...pokemons];
+  useEffect(handleSomething, [pokemons]);
 
   return (
     <StyledStack id="PokemonTabContent">
