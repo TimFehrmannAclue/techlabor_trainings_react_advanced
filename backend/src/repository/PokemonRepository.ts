@@ -1,12 +1,9 @@
 import IPokemon from "../../type/frontend/pokemon/IPokemon";
 import pokemonNames from "../util/data/PokemonNames";
-import PokemonNames from "../util/data/PokemonNames";
 
-const Pokemon = pokemonNames.map((name, index) => ({name, id: index + 1}));
 const PokemonRepository: { Pokemon: IPokemon[] } = {
-    Pokemon,
+    Pokemon: pokemonNames.map((name, index) => ({name, id: index + 1})),
 };
-console.info(`Created ${PokemonRepository.Pokemon.length} name permutations from ${PokemonNames.length} Pokemon names.`)
 
 export function getPokemonDb(): IPokemon[] | never {
     return PokemonRepository.Pokemon.slice(0, 100);

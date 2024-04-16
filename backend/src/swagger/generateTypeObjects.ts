@@ -33,8 +33,13 @@ function generateTypeObject(program: TJS.Program, filePath: string): ITypeObject
     }
 
     const json = JSON.stringify(schema, null, 2);
+
     // Optional to save those out
-    fs.writeFileSync(`typeObject/${fileNameWithoutExtension}.json`, json);
+    const typeObjectDir = 'typeObject/';
+    if (!fs.existsSync(typeObjectDir)) {
+        fs.mkdirSync(typeObjectDir);
+    }
+    fs.writeFileSync(`${typeObjectDir}${fileNameWithoutExtension}.json`, json);
 
     return {name: fileNameWithoutExtension, obj: JSON.parse(json)};
 }
