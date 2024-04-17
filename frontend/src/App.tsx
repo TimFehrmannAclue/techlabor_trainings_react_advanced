@@ -10,11 +10,13 @@ import LoginRoute from './component/route/LoginRoute';
 import LoginPage from './page/login/LoginPage';
 import ProtectedRoute from './component/route/ProtectedRoute';
 import MenuPage from './page/menu/MenuPage';
-import AccountPage from './page/account/AccountPage';
 import ROUTE_CONFIGS from './config/routeConfig';
 import createDefaultTheme from './theme/createAppTheme';
+import NotFoundPage from './page/notFound/NotFoundPage';
 
 export default function App(): ReactElement {
+  // Default stylings & colors of mui components
+  // https://mui.com/material-ui/customization/theming/
   const theme = createDefaultTheme();
 
   return (
@@ -39,12 +41,8 @@ export default function App(): ReactElement {
               path={ROUTE_CONFIGS.MENU.route}
               element={(<ProtectedRoute><MenuPage /></ProtectedRoute>)}
             />
-
-            {/* Logged in below */}
-            <Route
-              path={ROUTE_CONFIGS.ACCOUNT.route}
-              element={(<ProtectedRoute><AccountPage /></ProtectedRoute>)}
-            />
+            {/* Redirect all unknown routes to the index page */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </Provider>

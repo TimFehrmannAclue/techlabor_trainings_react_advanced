@@ -34,7 +34,7 @@ const defaultThemeOptions = (): ThemeOptions => {
     palette,
     typography,
     shadows,
-    // @ts-ignore ToDo Refactoring: Fix Type
+    // @ts-ignore Refactoring: Fix Type
     components,
     shape,
   };

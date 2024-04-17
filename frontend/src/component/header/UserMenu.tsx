@@ -21,8 +21,12 @@ export default function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { email, name } = useSelector((state: IRootState) => state.login);
 
-  const handleOpenSettings = () => {
+  const handleNavigateAccount = () => {
     navigate(ROUTE_CONFIGS.ACCOUNT.route);
+  };
+
+  const handleNavigateMenu = () => {
+    navigate(ROUTE_CONFIGS.MENU.route);
   };
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,7 +45,7 @@ export default function UserMenu() {
   };
 
   return (
-    <Box>
+    <Box sx={{ textAlign: 'right' }}>
 
       {/* Display email on hover & activate dropdown on click */}
       <Tooltip title={email}>
@@ -62,19 +66,12 @@ export default function UserMenu() {
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
         keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleOpenSettings}>Account</MenuItem>
+        <MenuItem onClick={handleNavigateMenu}>Menu</MenuItem>
+        <MenuItem onClick={handleNavigateAccount}>Account</MenuItem>
         <MenuItem onClick={handleLogout}>Abmelden</MenuItem>
       </Menu>
 

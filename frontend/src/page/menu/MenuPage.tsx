@@ -1,25 +1,27 @@
 import React, { ReactElement } from 'react';
+import { Paper } from '@mui/material';
 
-import Page from '../../component/page/Page';
 import ContentTabs from '../../component/tab/ContentTabs';
+import Page from '../../component/page/Page';
+
+import PokemonTabContent from './tab/PokemonTabContent';
+import AccountTab from './tab/AccountTab';
 
 /**
  * The main menu displayed after Login
  */
 export default function MenuPage(): ReactElement {
   return (
-    <Page
-      headerText="Menu"
-    >
+    <Page>
       <ContentTabs
         contentTabs={[
           {
-            headerText: 'Menu',
-            content: <p>Menu</p>,
+            headerText: 'Pokemon',
+            content: <PokemonTabContent />,
           },
           {
-            headerText: 'Table',
-            content: <p>Table</p>,
+            headerText: 'Account',
+            content: <AccountTab />,
           },
         ]}
       />

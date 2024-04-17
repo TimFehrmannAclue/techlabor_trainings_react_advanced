@@ -25,6 +25,9 @@
   ],
   "ignorePatterns": ["node_modules/*"],
   "rules": {
+    "no-spaced-func": "off",
+    "func-call-spacing": "off",
+    "linebreak-style": ["error", "unix"],
     "max-len": [
       "error",
       {
@@ -95,7 +98,7 @@
   "overrides": [
     {
       "files": [
-        "src/state/api/backend/raw/rawApi.ts"
+        "src/state/api/pokemon/pokemonApi.ts"
       ],
       "rules": {
         "no-use-before-define": "off"

@@ -1,8 +1,4 @@
-# ToDo
-- split up endpoints into files
-- test providing tags in annotations
-
-# setup
+# Setup
 - install vite globally (f.e. via npm)
 - yarn start
 
@@ -37,7 +33,7 @@ These types can be passed to the frontend via swagger.json.
 F.e. the jwt provided by the /login endpoint is a string, but it contains data in form of IUser.
 This type can not be part of an endpoint annotation due to swagger limitations but is added via magic.
 This is not relevant for the training.
-## typeObjects
+## typeObject
 Custom directory for generated TypeObjects (Not a common directory).
 ## .gitignore
 Contains all files to not be tracked by git.
@@ -52,6 +48,7 @@ Used during runtime & part of build
 - bcrypt: Used for hashing & salting the user password.
 - cors: Cors blocks web requests based on origin and is required for node.js server.
 - express: The node.js server which accepts web requests via public endpoints.
+- express-jwt: Verifies & decrypts Jwt passed as Bearer Header.
 - jsonwebtoken: Used to create an authentication token for each user.
 - swagger-jsdoc: Creates an openapi 3.0 documentation from a config file & endpoints annotations.
 - swagger-ui-express: Provides a web endpoint to access the swagger.json.
@@ -59,6 +56,7 @@ Used during runtime & part of build
 ### devDependencies
 Not Used during runtime & not part of build
 - @types/*: Additional package types for Typescript.
+- eslint: Enforces code styling based on config. Airbnb provides good config.
 - ts-node: To start node.js server with Typescript.
 - typescript: A common typescript version for all developers of this project.
 ## tsconfig.json

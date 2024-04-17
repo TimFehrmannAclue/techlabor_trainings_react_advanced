@@ -2,85 +2,46 @@ import { Theme } from '@mui/material';
 
 // Global default Styles of Mui react components
 const defaultComponents = (theme: Theme) => ({
-  MuiTextField: {
-    defaultProps: {
-      size: 'small',
-    },
+  // Global styles
+  MuiCssBaseline: {
+    // Global style for Scrollbar
     styleOverrides: {
-      root: {
-        [theme.breakpoints.only('xs')]: {
-          width: 200,
-        },
-        [theme.breakpoints.up('sm')]: {
-          width: 300,
-        },
-
-        '& .MuiFormLabel-root': {
-          borderRadius: '8px 16px 0 4px',
-          backgroundColor: 'white',
-          left: -14,
-          paddingRight: 16,
-          paddingLeft: 16,
-        },
-        '& fieldset': { border: 'none' },
+      '&::-webkit-scrollbar': {
+        width: '10px',
+        borderRadius: '10px',
+      },
+      '&::-webkit-scrollbar-track': {
+        borderRadius: '22px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme.palette.primary.main,
+        borderRadius: 100,
+      },
+      '&::-webkit-scrollbar-thumb:hover': {
+        background: theme.palette.primary.dark,
       },
     },
   },
-  MuiInputBase: {
-    styleOverrides: {
-      root: {
-        '& .MuiInputBase-input': {
-          backgroundColor: 'white',
-          borderRadius: 8,
-          boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px',
-        },
-      },
-    },
-  },
+  // The label above input fields
   MuiFormLabel: {
     styleOverrides: {
       root: {
         '&.Mui-focused': {
-          // Set your desired label color when focused
           color: '#222222',
         },
         '&.Mui-error': {
-          // Set your desired label color when focused
           color: theme.palette.error.main,
         },
       },
     },
   },
-  MuiFormControl: {
-    styleOverrides: {
-      root: (props: { id: string; }) => ({
-        ...(props.id === 'CustomSelectFormControl' && {
-          minWidth: 200,
-          width: '100%',
-          textAlign: 'left',
-        }),
-      })
-      ,
-    },
-  },
-  // Overriding Autofill Color
-  MuiOutlinedInput: {
-    styleOverrides: {
-      input: {
-        '&:-webkit-autofill': {
-          WebkitBoxShadow: '0 0 0 100px #fff inset',
-          // WebkitTextFillColor: '#fff',
-        },
-      },
-    },
-  },
+  // Error texts below input fields
   MuiFormHelperText: {
     styleOverrides: {
       root: {
-        // less vertical space between error texts below formField
         lineHeight: 1,
         width: 'fit-content',
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.background.paper,
         borderRadius: 4,
         padding: '2px 4px 2px 4px',
         marginLeft: 0,
@@ -89,14 +50,57 @@ const defaultComponents = (theme: Theme) => ({
       },
     },
   },
-  MuiButton: {
+  MuiTextField: {
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+          [theme.breakpoints.only('xs')]: {
+            width: 200,
+          },
+          [theme.breakpoints.up('sm')]: {
+            width: 300,
+          },
+          '& .MuiFormLabel-root': {
+            borderRadius: '8px 16px 0 4px',
+            backgroundColor: 'white',
+            left: -14,
+            paddingRight: 16,
+            paddingLeft: 16,
+          },
+          '& fieldset': {
+            border: 'none',
+          },
+          '& .MuiInputBase-input': {
+            borderRadius: 8,
+            boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px',
+          },
+          '&& .MuiInputBase-input': {
+            backgroundColor: 'white',
+            borderRadius: 8,
+            boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px',
+          },
+        },
+      },
+      {
+        props: { variant: 'standard' },
+        style: {
+          width: 'inherit',
+          borderRadius: 0,
+          '&& .MuiInputBase-input': {
+            boxShadow: 'none',
+          },
+        },
+      },
+    ],
+  },
+  MuiTabs: {
     styleOverrides: {
       root: {
-        // less vertical space between error texts below formField
-        [theme.breakpoints.down('sm')]: {
-          minWidth: 100,
-          width: 'fit-content',
-        },
+        alignSelf: 'center',
+      },
+      indicator: {
+        display: 'none',
       },
     },
   },

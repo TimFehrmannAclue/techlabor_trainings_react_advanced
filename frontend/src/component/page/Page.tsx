@@ -1,69 +1,39 @@
 import React, { ReactNode } from 'react';
-import {
-  Stack, styled, SxProps, Typography,
-} from '@mui/material';
+import { Box, styled, SxProps } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
-import PageBody from '../body/PageBody';
-import ResponsiveLoadingBackdrop from '../backdrop/ResponsiveLoadingBackdrop';
+import ROUTE_CONFIGS from '../../config/routeConfig';
+import removeTransientProps from '../../util/react/removeTransientProps';
 
-const PageStack = styled(Stack)(({ theme }) => ({
-  alignItems: 'center',
-  width: 'inherit',
-  minHeight: 'inherit',
-  height: 'auto',
+const StyledBox = styled(Box, removeTransientProps)<{ $isLoginPage: boolean }>(({ $isLoginPage, theme }) => ({
+  width: '100%',
+  // LoginPage is only Page without a Navbar
+  height: $isLoginPage ? '100%' : 'calc(100% - 64px)',
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
   padding: theme.spacing(2),
-  paddingBottom: theme.spacing(4),
+  overflow: 'hidden',
 }));
 
 interface IProps {
     children: ReactNode;
-    headerText?: string;
-    alignTextLeft?: boolean;
-    isLoading?: boolean;
     sx?: SxProps;
 }
 
 /**
- * Everything below the Appbar is in this Page component
- * It provides a loading overlay & an optional headerText
+ * Contains the content elements (children) of Page component
  */
-export default function Page(props: IProps) {
-  const {
-    children,
-    headerText,
-    alignTextLeft,
-    isLoading,
-    sx,
-  } = props;
+export default function Page({ children, sx }: IProps) {
+  const isLoginPage = useLocation().pathname === ROUTE_CONFIGS.INDEX.route;
 
   return (
-    <PageBody>
-      <PageStack
-        id="Page"
-        sx={sx}
-      >
-        {isLoading ? <ResponsiveLoadingBackdrop /> : null}
-        {headerText
-          ? (
-            <Stack
-              id="HeaderStack"
-              alignSelf={alignTextLeft ? 'start' : 'center'}
-              alignItems={alignTextLeft ? 'start' : 'center'}
-              pl={alignTextLeft ? 2 : 0}
-              pb={2}
-            >
-              <Typography
-                variant="h4"
-                fontWeight="bold"
-                mb={-0.75}
-              >
-                {headerText}
-              </Typography>
-            </Stack>
-          )
-          : null}
-        {children}
-      </PageStack>
-    </PageBody>
+    <StyledBox
+      id="Page"
+      $isLoginPage={isLoginPage}
+      sx={sx}
+    >
+      {children}
+    </StyledBox>
   );
 }

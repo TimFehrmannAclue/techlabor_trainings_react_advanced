@@ -5,8 +5,9 @@
     "start": "vite",
     "build": "vite build",
     "startFromBuild": "cd ./dist && http-server",
-    "codegen": "npx @rtk-query/codegen-openapi src/state/api/backend/openapi-config.ts && yarn codegenCleanup",
-    "codegenCleanup": "eslint src/state/api/backend/raw/rawApi.ts --fix"
+    "ToDo 1.1": "Run command below",
+    "codegen": "npx @rtk-query/codegen-openapi src/state/api/pokemon/openapi-config.ts && yarn codegenCleanup",
+    "codegenCleanup": "eslint src/state/api/pokemon/pokemonApi.ts --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -25,7 +26,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@rtk-query/codegen-openapi": "^1.0.0",
+    "@rtk-query/codegen-openapi": "^1.2.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/react-redux": "^7.1.24",

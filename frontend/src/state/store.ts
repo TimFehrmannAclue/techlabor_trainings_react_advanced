@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import loginReducer from './slice/loginSlice';
 import snackbarReducer from './slice/snackbarSlice';
-import enhancedApi from './api/backend/enhanced/enhancedApi';
+import enhancedPokemonApi from './api/pokemon/enhancedPokemonApi';
 import rtkQueryErrorMiddleware from './api/error/rtkQueryErrorMiddleware';
 
 export const store = configureStore({
@@ -12,13 +12,13 @@ export const store = configureStore({
     snackbar: snackbarReducer,
 
     // Remote (RTK Query) -> https://redux-toolkit.js.org/rtk-query/overview
-    [enhancedApi.reducerPath]: enhancedApi.reducer,
+    [enhancedPokemonApi.reducerPath]: enhancedPokemonApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     // Passing Dates which can not be serialized automatically but are serialized manually
     serializableCheck: false,
   })
-    .concat(enhancedApi.middleware)
+    .concat(enhancedPokemonApi.middleware)
     // Custom Middleware to catch some default errors of f.e. server not found
     .concat(rtkQueryErrorMiddleware),
 });

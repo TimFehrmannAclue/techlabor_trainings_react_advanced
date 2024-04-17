@@ -11,16 +11,19 @@ interface IProps {
 }
 
 /**
- * Redirects to /Login if not logged in
+ * Redirects to /Login if not logged in (Also called Guard)
  */
 export default function ProtectedRoute({ children }: IProps): ReactElement {
+  // Access the global redux-toolkit state, select the loginSlice and then the isLoggedIn field
   const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
   const dispatch = useDispatch();
 
+  // Redirect to LoginPage due to not logged in
   if (!isLoggedIn) {
     dispatch(setSnackbar({ text: 'Login benötigt', severity: 'warning' }));
     return <Navigate to={ROUTE_CONFIGS.INDEX.route} replace />;
   }
 
+  // Continue to page wrapped in ProtectedRoute
   return children;
 }

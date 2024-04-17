@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
+import {SALT} from "../../config";
 
-const salt = bcrypt.genSaltSync(10);
 export default function hash(password: string): string {
     try {
-        return bcrypt.hashSync(password, salt);
+        return bcrypt.hashSync(password, SALT);
     } catch (error) {
         console.error('Error hashing password:', error);
         throw error;

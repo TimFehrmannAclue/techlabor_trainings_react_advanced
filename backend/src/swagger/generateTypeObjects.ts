@@ -9,7 +9,7 @@ import ITypeObject from "../../type/backend/swagger/ITypeObject";
 export default function generateTypeObjects(typeDir: string, tsConfigFile: string): ITypeObject[] {
     const filePaths = getAllFilePaths(typeDir);
     const tsconfigPath = path.resolve(tsConfigFile);
-    // ToDo There is probably a better solution for this
+    // Sadly there is no prettier way for this
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const tsconfig = require(tsconfigPath);
 
@@ -33,8 +33,13 @@ function generateTypeObject(program: TJS.Program, filePath: string): ITypeObject
     }
 
     const json = JSON.stringify(schema, null, 2);
+
     // Optional to save those out
-    fs.writeFileSync(`typeObject/${fileNameWithoutExtension}.json`, json);
+    const typeObjectDir = 'typeObject/';
+    if (!fs.existsSync(typeObjectDir)) {
+        fs.mkdirSync(typeObjectDir);
+    }
+    fs.writeFileSync(`${typeObjectDir}${fileNameWithoutExtension}.json`, json);
 
     return {name: fileNameWithoutExtension, obj: JSON.parse(json)};
 }

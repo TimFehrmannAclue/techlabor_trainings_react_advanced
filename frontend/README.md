@@ -1,29 +1,4 @@
-# ToDo
-- files for TabContents
-- document tab dir
-- add query
-  - add tag invalidations
-- localize response tokens
-- add parts of affinity steps to presentation
-- extend IProps to reduce redundance
-- diagram
-  - complete architecture
-  - Login sequence diagram
-  - Slice sequence diagram (f.e. Snackbar)
-- analyze build size & package sizes
-- remove outdated dir
-- test on someone elses pc, also note whether nodejs version msut be installed manually
-- does backend/error stuff work?
-
-# Preparation before Workshop
-- Clone git repo
-- IDE for Js/Ts (Webstorm, VsCode, etc.)
-  - Make sure auto complete works
-- Setup frontend & backend (see README.md -> Setup)
-
-
 # Setup
-- start backend (See backend README.md)
 - install vite globally (f.e. via npm)
 - yarn start
 
@@ -34,7 +9,7 @@ Stands for distributable, is not tracked in git and contains a complete build.
 Packages installed by running *yarn* and not tracked in git.
 ## public
 Images & configuration files used by index.html.
-### favicon.cio
+### favicon.ico
 The small icon on the browser tab.
 ### manifest.json
 Information for search engines & browser about this website.
@@ -45,8 +20,6 @@ Custom general purpose react components.
 Custom files to store configuration values in a singular place.
 ### image
 Images used by react components.
-### localisation
-Translating tokens into text for user (f.e. SERVER_ERROR -> 'Server error').
 ### page
 Each page has a url route like f.e. /login and content for it.
 Pages use and configure react-components for custom behaviour.
@@ -54,12 +27,11 @@ Pages use and configure react-components for custom behaviour.
 Contains all files for global state management using redux-toolkit
 #### api
 State management for data received from the backend using redux-toolkit-query
-##### backend
-- emptyApi.ts: The rtk web-client generated from swagger.json will be injected into this api.
-- enhancedApi.ts: Manually edit generated rtk endpoints & query cache invalidation using tags.
-- rawApi.ts: Rtk web-client & types generated from swagger.json.
-- swagger.json: This is a local backup file in case backend swagger.json is not available.
-- openapi-config.ts: Config for redux-toolkit-query-codegen to generate rawApi.ts.
+##### pokemon
+- emptyPokemonApi.ts: The rtk web-client generated from swagger.json will be injected into this api boilerplate.
+- enhancedPokemonApi.ts: Manually edit generated rtk endpoints & query cache invalidation using tags.
+- pokemonApi.ts: Rtk web-client & types generated from swagger.json.
+- openapi-config.ts: Config for redux-toolkit-query-codegen to generate pokemonApi.ts.
 ##### error
 Error handling for redux-toolkit-query. 
 #### slice
@@ -97,11 +69,10 @@ They can f.e. be run using *yarn start*
 - *codegenCleanup* Applies Eslint onto the generated http-web-client.
 ### dependencies
 Used during runtime & part of build.
+- @emotion: Styling Library used by Mui
 - @hookform/resolvers: extends react-hook-form to allow custom validation using f.e. yup.
 - @mui/icons-material: Icons as react components.
 - @mui/material: Provides pre-styled components & builds on Css.
-- @mui/styled-engine: required to use Mui as styling library since default is now @Emotion.
-- @mui/system: Provides more styling utility like f.e sx prop.
 - @reduxjs/toolkit: Redux with way less boilerplate.
 - jwt-decode: Decode jwt tokens.
 - react: Wraps html elements using components & provides state management.
@@ -121,53 +92,4 @@ Not Used during runtime & not part of build.
 - http-server: Run build from dist dir locally.
 - ts-node: Required by Rtk Codegen.
 - typescript: A common typescript version for all developers of this project.
-- vite: A very fast build tool.
-### resolutions
-Sometimes there are incompatibilities between package dependencie.
-Like two packages using same package with different version.
-These issues can be resolved using resolutions.
-- "@mui/styled-engine: npm:@mui/styled-engine-sc@latest": Fix of open Mui issue
-
-
-# Training Responsive Webapp React-Mui-rtk
-Backend
-- Api generation
-- Endpoints
-  - Login
-  - Swagger.json
-    Frontend
-  - Content
-    - LoginPage (yup, react-hook-form)
-    - MenuPage Tabs (Url SearchParams)
-      - Tab1: MuiDataGrid
-      - Tab2: ?
-  - Routing
-    - LoginRoute, ProtectedRoute
-  - State
-    - LoginSlice (rtk query & localstorage)
-    - SnackbarSlice ()
-    - codegen Api generation (Queries, Mutations, Tags)
-  - Design
-    - How to Responsive (mobile -> desktop)
-    - Mui
-      - Styling (sx vs styled vs theme)
-  - QoL
-    - EsLint
-  - Optional
-    - automated form generation (config -> react component -> validated form)
-    - Tabs (Mui)
-    - Charts (recharts)
-    - localization
-    - color theming
-    - Cookies
-    - Dialog/Prompt
-    - Signals (got to read into it myself)
-    - Deployment
-    - Reusability of components
-    - Seo
-    - Web Security
-    - Build Size & optimization
-
-Questions:
-- you use scss but we use Mui
-- Emotion already replaces Mui for SSR. 
+- vite: A very fast build tool. sue

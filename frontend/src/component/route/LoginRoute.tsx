@@ -10,14 +10,18 @@ interface IProps {
 }
 
 /**
- * Redirects to Menu if already logged in
+ * Redirects to Menu if already logged in (Also called Guard)
  */
 export default function LoginRoute({ children }: IProps): ReactElement {
+  // Access the global redux-toolkit state, select the loginSlice and then the isLoggedIn field
   const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
 
+  // Redirect to MenuPage due to logged in
   if (isLoggedIn) {
+    console.info('LoginRoute - redirect to MenuPage as user is loggin in')
     return <Navigate to={ROUTE_CONFIGS.MENU.route} replace />;
   }
 
+  // Continue to page wrapped in LoginRoute
   return children;
 }

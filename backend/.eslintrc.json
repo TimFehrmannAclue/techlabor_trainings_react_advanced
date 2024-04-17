@@ -17,5 +17,6 @@
     ],
     "ignorePatterns": ["node_modules/*"],
     "rules": {
+        "linebreak-style": ["error", "unix"]
     }
 }

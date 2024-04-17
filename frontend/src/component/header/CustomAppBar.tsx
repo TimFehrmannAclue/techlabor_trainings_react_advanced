@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppBar, styled, Toolbar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { IRootState } from '../../state/store';
-import { IRouteConfig } from '../../../type/route/IRouteConfig';
 import ROUTE_CONFIGS from '../../config/routeConfig';
 
 import AppLogo from './AppLogo';
-import BurgerMenu from './BurgerMenu';
 import UserMenu from './UserMenu';
+import PageHeaderName from './PageHeaderName';
 
-const Root = styled(AppBar)(({ }) => ({}));
-
-export const APP_BAR_ROUTE_CONFIG: IRouteConfig[] = [
-  ROUTE_CONFIGS.INDEX,
-  ROUTE_CONFIGS.MENU,
-];
+const StyledToolbar = styled(Toolbar)(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  '& > *': {
+    flex: '1', // Make each child take up equal width
+  },
+}));
 
 export default function CustomAppBar() {
   const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
@@ -24,14 +24,13 @@ export default function CustomAppBar() {
 
   return (
     isLoginPage ? null : (
-      <Root position="static">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <BurgerMenu pageRouteConfigs={APP_BAR_ROUTE_CONFIG} />
+      <AppBar position="static">
+        <StyledToolbar>
           <AppLogo />
-
+          <PageHeaderName />
           {isLoggedIn ? <UserMenu /> : null}
-        </Toolbar>
-      </Root>
+        </StyledToolbar>
+      </AppBar>
     )
   );
 }
