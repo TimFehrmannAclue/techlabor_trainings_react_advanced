@@ -52,25 +52,7 @@ const TextFieldStack = styled(Stack)(({ theme }) => ({
 }));
 
 export default function LoginPage() {
-  const dispatch = useDispatch();
-
-  // ToDo 1.2 Import and use Login Mutation from generated pokemonApi
-  const [login, {
-    data: loginData,
-    isLoading: loginIsLoading,
-    error: loginError,
-  }] = usePostLoginMutation();
-
-  // Handle login Response
-  useEffect(() => {
-    if (loginError || loginIsLoading || !loginData) {
-      return;
-    }
-
-    console.info('LoginPage - received jwt: ', loginData.jwt);
-    // No need to navigate as LoginRoute automatically redirects
-    dispatch(setLoggedIn(loginData.jwt));
-  }, [loginData, loginIsLoading, loginError]);
+  // ToDo 1.2 Import and use login-mutation from generated pokemonApi
 
   // An input form using react-hook-form
   const {
@@ -93,13 +75,13 @@ export default function LoginPage() {
   const handleSubmit = () => {
     // Get data entered into form from react-hook-form state
     const { email, password } = getValues();
-    // Run redux-toolkit login mutation
-    login({ body: { email, password } });
+    // ToDo 1.4 Run login-mutation with credentials in body
   };
 
   return (
     <Page sx={{ padding: 0 }}>
-      {loginIsLoading ? <ResponsiveLoadingBackdrop /> : null}
+      {/* ToDo 1.3 Add ResponsiveLoadingBackdrop when login-mutation isLoading */}
+
       <SimpleBackground backgroundImage={backgroundImage} />
       <LoginGrid
         item
