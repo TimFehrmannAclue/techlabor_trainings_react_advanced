@@ -45,7 +45,6 @@
 ### presentation
 - Zu den ToDos direkt die Code snippets mit den todos, auf die nächste folie dann die lösung
 - Beispiele aus Folien sollten nicht Lösungen sein
-- add file names to snippets & sources to links/images
 - Fragen für Teilnehmer einbauen
 - explain project structure in code
 #### Optional
