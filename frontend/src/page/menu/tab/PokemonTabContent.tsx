@@ -135,23 +135,6 @@ export default function PokemonTabContent(): ReactElement {
     },
     [pokemons],
   );
-  const handleSomething = () => {}
-
-  // Not Triggered
-  pokemons.push({ id: 1, name: 'Bulbasaur' })
-  useEffect(handleSomething, [pokemons]);
-
-  // Triggered
-  pokemons.push({ id: 1, name: 'Bulbasaur' })
-  useEffect(handleSomething, [pokemons.length]);
-
-  // Not Triggered
-  pokemons[0].name = 'Ivysaur'
-  useEffect(handleSomething, [pokemons.length]);
-
-  // Triggered
-  pokemons = [...pokemons];
-  useEffect(handleSomething, [pokemons]);
 
   return (
     <StyledStack id="PokemonTabContent">
