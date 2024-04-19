@@ -5,7 +5,6 @@
     "start": "vite",
     "build": "vite build",
     "startFromBuild": "cd ./dist && http-server",
-    "ToDo 1.1": "Run command below",
     "codegen": "npx @rtk-query/codegen-openapi src/state/api/pokemon/openapi-config.ts && yarn codegenCleanup",
     "codegenCleanup": "eslint src/state/api/pokemon/pokemonApi.ts --fix"
   },
