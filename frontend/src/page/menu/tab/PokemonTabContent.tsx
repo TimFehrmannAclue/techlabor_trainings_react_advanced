@@ -1,6 +1,4 @@
-import React, {
-  ReactElement, useEffect, useRef, useState,
-} from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import {
   Box, Button, List, ListItem, Stack, styled,
 } from '@mui/material';
@@ -61,30 +59,22 @@ export default function PokemonTabContent(): ReactElement {
   // Display loading when waiting for backend request
   const isLoading = getPokemonIsLoading || postPokemonDataIsLoading;
 
-  // useRef is like useState but does not trigger a rerender
-  // Re-rendering on every change would be very costly due to all those pokemon
-  // This is possible due to every TextField handling its own state.
-  // ToDo 3.2.1 use useRef to store edited pokemons in an editedPokemonsMap
-  const editedPokemonsMap = useRef<Record<number, IPokemon>>({});
-
-  // We want to rerender once the first change occurred to f.e. enable buttons submit, reset
-  // ToDo 3.3.1 use useState to enable/disable the reset & submit button
   const [hasEditedPokemons, setHasEditedPokemons] = useState(false);
 
-  // There is no way to reset the TextFields with re-rendering due to useMemo caching
-  // so all TextFields pass back a function reference to a reset the internal state of the TextField
-  // ToDo 3.4.1 use useRef to store reset Callbacks from child components in a resetMap
-  const resetMap = useRef<Record<number, () => void>>({});
+  // ToDo 3.2.1 use useRef to store edited pokemons in an editedPokemonsMap
+
+  // ToDo 3.3.1 use useRef to store reset Callbacks from child components in a resetMap
 
   // Reset hasEdited when new pokemon were fetched
   useEffect(() => {
     setHasEditedPokemons(false);
+
+    // Clear Cache on Logout as this might lead to confusing behaviour during training otherwise
     return () => {
-      // Clear Cache on Logout as this might lead to confusing behaviour during training otherwise
       if (pokemons && pokemons.length > 0) {
         dispatch(enhancedPokemonApi.util.invalidateTags(['Pokemon']));
       }
-    };
+    }
   }, [pokemons]);
 
   const handleSelectedPokemonId = (id: number) => {
@@ -93,23 +83,25 @@ export default function PokemonTabContent(): ReactElement {
 
   const handleUpdatePokemon = (pokemon: IPokemon) => {
     // ToDo 3.2.2 update the pokemon in the editedPokemonsMap
-    editedPokemonsMap.current[pokemon.id] = pokemon;
-    // ToDo 3.3.2 update the state that tracks whether pokemons have been edited
+
     setHasEditedPokemons(true);
   };
 
   const handleSubmit = () => {
     // Submitting all pokemon. Use changed pokemon in favor of unchanged.
-    const updatedPokemonData: IPokemon[] = pokemons.map((pokemon) => editedPokemonsMap.current[pokemon.id] ?? pokemon);
-    postPokemonData({ body: updatedPokemonData });
+
+    // ToDo 3.2 enable
+    // const updatedPokemonData: IPokemon[] = pokemons.map((pokemon) => editedPokemonsMap.current[pokemon.id] ?? pokemon);
+    // postPokemonData({ body: updatedPokemonData });
   };
 
   const handleReset = () => {
     // Reset the internal state of every TextField
-    Object.values(editedPokemonsMap.current)
-      .forEach(({ id }) => resetMap.current[id]());
-    editedPokemonsMap.current = {};
-    // ToDo 3.3.2 update the state that tracks whether pokemons have been edited
+    // ToDo 3.3 enable
+    // Object.values(editedPokemonsMap.current)
+    //   .forEach(({ id }) => resetMap.current[id]());
+    // editedPokemonsMap.current = {};
+
     setHasEditedPokemons(false);
   };
 
@@ -118,14 +110,12 @@ export default function PokemonTabContent(): ReactElement {
   const pokemonItems = pokemons.map((pokemon) => (
     <ListItem id="PokemonListItem" key={pokemon.id}>
       <EditableTextField
-        defaultValue={editedPokemonsMap.current[pokemon.id]?.name || pokemon.name}
+        // ToDo 3.2.3 use name of edited pokemon (if it exists) in favor of queried pokemon name
+        defaultValue={pokemon.name}
         onChange={(name) => handleUpdatePokemon({ id: pokemon.id, name })}
         onSelect={() => handleSelectedPokemonId(pokemon.id)}
-        // ToDo 3.4.2 Pass a reset-callback function to EditableTextField
-        //   - when triggered it returns a reference to a reset function
-        //   - assign the the reset function to the resetMap
         registerReset={(reset) => {
-          resetMap.current[pokemon.id] = reset;
+          // ToDo 3.3.2 Assign reset-callback to resetMap
         }}
       />
     </ListItem>
@@ -133,7 +123,11 @@ export default function PokemonTabContent(): ReactElement {
 
   return (
     <StyledStack id="PokemonTabContent">
-      <img style={{ width: 200, height: 200 }} src={`${POKEMON_ARTWORK_BY_ID_URL}${selectedPokemonId}.png`} alt="PokemonArtwork" />
+      <img
+        style={{ width: 200, height: 200 }}
+        src={`${POKEMON_ARTWORK_BY_ID_URL}${selectedPokemonId}.png`}
+        alt="PokemonArtwork"
+      />
       <StyledBox id="PokemonListBox">
         {isLoading ? <ResponsiveLoadingBackdrop /> : null}
         <List id="PokemonList" dense sx={{ width: '100%' }}>
@@ -145,14 +139,12 @@ export default function PokemonTabContent(): ReactElement {
         <Button
           variant="contained"
           onClick={handleReset}
-          disabled={!hasEditedPokemons}
         >
           Reset
         </Button>
         <Button
           variant="contained"
           onClick={handleSubmit}
-          disabled={!hasEditedPokemons}
         >
           Submit
         </Button>
