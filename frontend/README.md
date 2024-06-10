@@ -1,6 +1,7 @@
 # Setup
 - install vite globally (f.e. via npm)
-- yarn start
+- yarn
+- yarn start (takes a while to render on initial start)
 
 # Directories & Files
 ## dist
