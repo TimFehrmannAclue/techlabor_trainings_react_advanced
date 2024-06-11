@@ -8,8 +8,8 @@ import rtkQueryErrorMiddleware from './api/error/rtkQueryErrorMiddleware';
 export const store = configureStore({
   reducer: {
     // Local (RTK) -> https://redux-toolkit.js.org/api/createSlice
-    // TODO 2.1 add loginReducer
-    login: loginReducer,
+    // ToDo 2.1 add loginReducer
+
     snackbar: snackbarReducer,
 
     // Remote (RTK Query) -> https://redux-toolkit.js.org/rtk-query/overview

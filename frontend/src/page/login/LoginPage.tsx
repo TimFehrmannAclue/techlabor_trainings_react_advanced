@@ -69,8 +69,7 @@ export default function LoginPage() {
 
     console.info('LoginPage - received jwt: ', loginData.jwt);
     // No need to navigate as LoginRoute automatically redirects
-    // TODO 2.5 dispatch setLoggedIn
-    dispatch(setLoggedIn(loginData.jwt));
+    // ToDo 2.5 dispatch setLoggedIn
   }, [loginData, loginIsLoading, loginError]);
 
   // An input form using react-hook-form

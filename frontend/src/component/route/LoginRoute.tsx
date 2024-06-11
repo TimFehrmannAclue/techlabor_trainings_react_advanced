@@ -14,8 +14,8 @@ interface IProps {
  */
 export default function LoginRoute({ children }: IProps): ReactElement {
   // Access the global redux-toolkit state, select the loginSlice and then the isLoggedIn field
-  // TODO 2.7 retrieve isLoggedIn from loginSlice
-  const isLoggedIn = useSelector((state: IRootState) => state.login.isLoggedIn);
+  // ToDo 2.7 retrieve isLoggedIn from loginSlice
+  const isLoggedIn = false;
 
   // Redirect to MenuPage due to logged in
   if (isLoggedIn) {
