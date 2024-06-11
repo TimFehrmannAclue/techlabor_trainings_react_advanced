@@ -54,7 +54,6 @@ const TextFieldStack = styled(Stack)(({ theme }) => ({
 export default function LoginPage() {
   const dispatch = useDispatch();
 
-  // ToDo 1.2 Import and use Login Mutation from generated pokemonApi
   const [login, {
     data: loginData,
     isLoading: loginIsLoading,
