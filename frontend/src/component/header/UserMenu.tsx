@@ -39,6 +39,7 @@ export default function UserMenu() {
 
   // Actions
   const handleLogout = () => {
+    // ToDo 2.6 dispatch setLoggedOut
     dispatch(setLoggedOut());
     handleClose();
     navigate(ROUTE_CONFIGS.INDEX.route);

@@ -29,6 +29,7 @@ export const loginSlice = createSlice({
     setLoggedIn: (state, action: PayloadAction<string>) => {
       const token = action.payload;
       const user = jwtDecode(token) as IUser;
+      // ToDo 2.2 update state correctly and save state to local storage ( use saveToLocalStorage with LOGIN_STATE_TOKEN )
       const newState = {
         ...state,
         isLoggedIn: true,
@@ -40,12 +41,14 @@ export const loginSlice = createSlice({
       return newState;
     },
     setLoggedOut: () => {
+      // ToDo 2.3 reset state to initialState and remove token from local storage ( use removeFromLocalStorage with LOGIN_STATE_TOKEN )
       removeFromLocalStorage(LOGIN_STATE_TOKEN);
       return { ...initialState };
     },
   },
 });
 
+// ToDo 2.4 export actions
 export const {
   setLoggedIn,
   setLoggedOut,
