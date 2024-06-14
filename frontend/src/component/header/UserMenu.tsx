@@ -11,7 +11,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { IRootState } from '../../state/store';
 import { setLoggedOut } from '../../state/slice/loginSlice';
 import ROUTE_CONFIGS from '../../config/routeConfig';
-import { selectCurrentTheme, toggleTheme } from '../../state/slice/themeSlice';
 
 interface IThemeToggleButton extends ButtonProps {
   mode: string;
@@ -38,7 +37,7 @@ export default function UserMenu() {
   // State
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { email, name } = useSelector((state: IRootState) => state.login);
-  const currentTheme = selectCurrentTheme();
+  const currentTheme = 'light'
 
   const handleNavigateAccount = () => {
     navigate(ROUTE_CONFIGS.ACCOUNT.route);
@@ -65,8 +64,6 @@ export default function UserMenu() {
   };
 
   const handleToggleTheme = () => {
-    // @ts-ignore
-    dispatch(toggleTheme());
   };
 
   return (
