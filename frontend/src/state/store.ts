@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import loginReducer from './slice/loginSlice';
 import snackbarReducer from './slice/snackbarSlice';
+import themeReducer from './slice/themeSlice';
 import enhancedPokemonApi from './api/pokemon/enhancedPokemonApi';
 import rtkQueryErrorMiddleware from './api/error/rtkQueryErrorMiddleware';
 
@@ -11,6 +12,7 @@ export const store = configureStore({
     // ToDo 2.1 add loginReducer
     login: loginReducer,
     snackbar: snackbarReducer,
+    theme: themeReducer,
 
     // Remote (RTK Query) -> https://redux-toolkit.js.org/rtk-query/overview
     [enhancedPokemonApi.reducerPath]: enhancedPokemonApi.reducer,
